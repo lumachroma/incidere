@@ -18,7 +18,7 @@ namespace web.identity.server.IdentityServer
 
                     RedirectUris = new List<string>
                     {
-                        "http://localhost:50451/"
+                        "http://localhost:50450/"
                     },
 
                     AllowAccessToAllScopes = true
