@@ -1,6 +1,8 @@
 ﻿using IdentityServer3.Core.Configuration;
 using IdentityServer3.Core.Models;
 using Microsoft.Owin;
+using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.OpenIdConnect;
 using Owin;
 using System;
 using System.Security.Cryptography.X509Certificates;
@@ -28,6 +30,21 @@ namespace web.identity.server
 
                     RequireSsl = false
                 });
+            });
+
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationType = "Cookies"
+            });
+
+            app.UseOpenIdConnectAuthentication(new OpenIdConnectAuthenticationOptions
+            {
+                Authority = "http://localhost:50450/identity",
+                ClientId = "mvc",
+                RedirectUri = "http://localhost:50450/",
+                ResponseType = "id_token",
+
+                SignInAsAuthenticationType = "Cookies"
             });
         }
 
