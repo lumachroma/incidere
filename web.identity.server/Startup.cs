@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Protocols;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Owin;
@@ -69,6 +70,7 @@ namespace web.identity.server
                     {
                         var id = n.AuthenticationTicket.Identity;
 
+                        var name = id.FindFirst(Constants.ClaimTypes.Name);
                         var givenName = id.FindFirst(Constants.ClaimTypes.GivenName);
                         var familyName = id.FindFirst(Constants.ClaimTypes.FamilyName);
                         var sub = id.FindFirst(Constants.ClaimTypes.Subject);
@@ -79,8 +81,12 @@ namespace web.identity.server
                             Constants.ClaimTypes.GivenName,
                             Constants.ClaimTypes.Role);
 
-                        nid.AddClaim(givenName);
-                        nid.AddClaim(familyName);
+                        if (null != name)
+                            nid.AddClaim(name);
+                        if (null != givenName)
+                            nid.AddClaim(givenName);
+                        if (null != familyName)
+                            nid.AddClaim(familyName);
                         nid.AddClaim(sub);
                         nid.AddClaims(roles);
                         nid.AddClaim(new Claim("app_specific", "some data"));
@@ -124,6 +130,18 @@ namespace web.identity.server
                 ClientSecret = "JiTTgBocaU0kYrrQ9KJBeXbx"
             };
             app.UseGoogleAuthentication(google);
+
+            var fb = new FacebookAuthenticationOptions
+            {
+                AuthenticationType = "Facebook",
+                Caption = "Sign-in with Facebook",
+                SignInAsAuthenticationType = signInAsType,
+
+                // Facebook for Developers: https://developers.facebook.com/apps/273791976367235/dashboard/
+                AppId = "273791976367235",
+                AppSecret = "ee82053d9bde8b87b4a4b2e70ad971ee"
+            };
+            app.UseFacebookAuthentication(fb);
         }
 
         X509Certificate2 LoadCertificate()
