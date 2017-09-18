@@ -21,6 +21,11 @@ namespace web.identity.server.IdentityServer
                         "http://localhost:50450/"
                     },
 
+                    PostLogoutRedirectUris = new List<string>
+                    {
+                        "http://localhost:50450/"
+                    },
+
                     AllowAccessToAllScopes = true
                 }
             };

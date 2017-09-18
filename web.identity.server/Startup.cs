@@ -1,13 +1,17 @@
 ﻿using IdentityServer3.Core;
 using IdentityServer3.Core.Configuration;
+using Microsoft.IdentityModel.Protocols;
 using Microsoft.Owin;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Owin;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens;
+using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using System.Web.Helpers;
 using web.identity.server.IdentityServer;
 
@@ -34,6 +38,11 @@ namespace web.identity.server
                         .UseInMemoryClients(Clients.Get())
                         .UseInMemoryScopes(Scopes.Get()),
 
+                    AuthenticationOptions = new IdentityServer3.Core.Configuration.AuthenticationOptions
+                    {
+                        EnablePostSignOutAutoRedirect = true
+                    },
+
                     RequireSsl = false
                 });
             });
@@ -50,7 +59,54 @@ namespace web.identity.server
                 Scope = "openid profile roles",
                 RedirectUri = "http://localhost:50450/",
                 ResponseType = "id_token",
-                SignInAsAuthenticationType = "Cookies"
+                SignInAsAuthenticationType = "Cookies",
+
+                Notifications = new OpenIdConnectAuthenticationNotifications
+                {
+                    SecurityTokenValidated = n =>
+                    {
+                        var id = n.AuthenticationTicket.Identity;
+
+                        var givenName = id.FindFirst(Constants.ClaimTypes.GivenName);
+                        var familyName = id.FindFirst(Constants.ClaimTypes.FamilyName);
+                        var sub = id.FindFirst(Constants.ClaimTypes.Subject);
+                        var roles = id.FindAll(Constants.ClaimTypes.Role);
+
+                        var nid = new ClaimsIdentity(
+                            id.AuthenticationType,
+                            Constants.ClaimTypes.GivenName,
+                            Constants.ClaimTypes.Role);
+
+                        nid.AddClaim(givenName);
+                        nid.AddClaim(familyName);
+                        nid.AddClaim(sub);
+                        nid.AddClaims(roles);
+                        nid.AddClaim(new Claim("app_specific", "some data"));
+
+                        nid.AddClaim(new Claim("id_token", n.ProtocolMessage.IdToken));
+
+                        n.AuthenticationTicket = new AuthenticationTicket(
+                            nid,
+                            n.AuthenticationTicket.Properties);
+
+                        return Task.FromResult(0);
+                    },
+
+                    RedirectToIdentityProvider = n =>
+                    {
+                        if (n.ProtocolMessage.RequestType == OpenIdConnectRequestType.LogoutRequest)
+                        {
+                            var idTokenHint = n.OwinContext.Authentication.User.FindFirst("id_token");
+
+                            if (idTokenHint != null)
+                            {
+                                n.ProtocolMessage.IdTokenHint = idTokenHint.Value;
+                            }
+                        }
+
+                        return Task.FromResult(0);
+                    }
+                }
             });
         }
 
