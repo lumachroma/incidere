@@ -1,11 +1,14 @@
-﻿using IdentityServer3.Core.Configuration;
-using IdentityServer3.Core.Models;
+﻿using IdentityServer3.Core;
+using IdentityServer3.Core.Configuration;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Owin;
 using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens;
 using System.Security.Cryptography.X509Certificates;
+using System.Web.Helpers;
 using web.identity.server.IdentityServer;
 
 [assembly: OwinStartup(typeof(web.identity.server.Startup))]
@@ -16,6 +19,9 @@ namespace web.identity.server
     {
         public void Configuration(IAppBuilder app)
         {
+            AntiForgeryConfig.UniqueClaimTypeIdentifier = Constants.ClaimTypes.Subject;
+            JwtSecurityTokenHandler.InboundClaimTypeMap = new Dictionary<string, string>();
+
             app.Map("/identity", idsrvApp =>
             {
                 idsrvApp.UseIdentityServer(new IdentityServerOptions
