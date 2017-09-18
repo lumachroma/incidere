@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Protocols;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Owin;
 using System;
@@ -40,7 +41,8 @@ namespace web.identity.server
 
                     AuthenticationOptions = new IdentityServer3.Core.Configuration.AuthenticationOptions
                     {
-                        EnablePostSignOutAutoRedirect = true
+                        EnablePostSignOutAutoRedirect = true,
+                        IdentityProviders = ConfigureIdentityProviders
                     },
 
                     RequireSsl = false
@@ -108,6 +110,20 @@ namespace web.identity.server
                     }
                 }
             });
+        }
+        private void ConfigureIdentityProviders(IAppBuilder app, string signInAsType)
+        {
+            var google = new GoogleOAuth2AuthenticationOptions
+            {
+                AuthenticationType = "Google",
+                Caption = "Sign-in with Google",
+                SignInAsAuthenticationType = signInAsType,
+
+                // Google APIs Credentials: https://console.developers.google.com/apis/credentials?project=identityserver-lumachroma&organizationId=801644395166
+                ClientId = "703287403163-cldlftau1ikq7bcb3qg1v0msejpf7rmu.apps.googleusercontent.com",
+                ClientSecret = "JiTTgBocaU0kYrrQ9KJBeXbx"
+            };
+            app.UseGoogleAuthentication(google);
         }
 
         X509Certificate2 LoadCertificate()
