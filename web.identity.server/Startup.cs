@@ -24,9 +24,9 @@ namespace web.identity.server
                     SigningCertificate = LoadCertificate(),
 
                     Factory = new IdentityServerServiceFactory()
-                                .UseInMemoryUsers(Users.Get())
-                                .UseInMemoryClients(Clients.Get())
-                                .UseInMemoryScopes(StandardScopes.All),
+                        .UseInMemoryUsers(Users.Get())
+                        .UseInMemoryClients(Clients.Get())
+                        .UseInMemoryScopes(Scopes.Get()),
 
                     RequireSsl = false
                 });
