@@ -41,9 +41,9 @@ namespace web.identity.server
             {
                 Authority = "http://localhost:50450/identity",
                 ClientId = "mvc",
+                Scope = "openid profile roles",
                 RedirectUri = "http://localhost:50450/",
                 ResponseType = "id_token",
-
                 SignInAsAuthenticationType = "Cookies"
             });
         }
