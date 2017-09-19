@@ -23,9 +23,11 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Login", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Call API (Client)", "ClientCredentials", "CallApi")</li>
 
                     @if (User.Identity.IsAuthenticated)
                     {
+                        <li>@Html.ActionLink("Call API (User)", "UserCredentials", "CallApi")</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
                     }
                 </ul>
