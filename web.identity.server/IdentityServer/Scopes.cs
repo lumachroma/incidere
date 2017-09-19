@@ -22,9 +22,9 @@ namespace web.identity.server.IdentityServer
                 new Scope
                 {
                     Enabled = true,
-                    DisplayName = "Sample API",
-                    Name = "sampleApi",
-                    Description = "Access to a sample API",
+                    DisplayName = "Incidere Service API",
+                    Name = "incidereServiceApi",
+                    Description = "Access to API",
                     Type = ScopeType.Resource,
                     Claims = new List<ScopeClaim>
                     {

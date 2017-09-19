@@ -44,10 +44,10 @@ namespace EmbeddedMvc.Controllers
         {
             var client = new TokenClient(
                 "http://localhost:50450/identity/connect/token",
-                "mvc_service",
+                "mvc_incidere_service",
                 "secret");
 
-            return await client.RequestClientCredentialsAsync("sampleApi");
+            return await client.RequestClientCredentialsAsync("incidereServiceApi");
         }
     }
 }

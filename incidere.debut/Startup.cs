@@ -35,7 +35,7 @@ namespace incidere.debut
             {
                 Authority = "http://localhost:50450/identity",
                 ClientId = "mvc_incidere",
-                Scope = "openid profile roles sampleApi",
+                Scope = "openid profile roles incidereServiceApi",
                 RedirectUri = "http://localhost:50451/",
                 ResponseType = "id_token token",
                 SignInAsAuthenticationType = "Cookies",
@@ -85,7 +85,7 @@ namespace incidere.debut
                 Authority = "http://localhost:50450/identity",
                 ValidationMode = ValidationMode.ValidationEndpoint,
 
-                RequiredScopes = new[] { "sampleApi" }
+                RequiredScopes = new[] { "incidereServiceApi" }
             });
         }
     }

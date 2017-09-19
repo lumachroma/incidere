@@ -49,8 +49,8 @@ namespace web.identity.server.IdentityServer
                 },
                 new Client
                 {
-                    ClientName = "MVC Client (service communication)",
-                    ClientId = "mvc_service",
+                    ClientName = "MVC Client (incidere service communication)",
+                    ClientId = "mvc_incidere_service",
                     Flow = Flows.ClientCredentials,
 
                     ClientSecrets = new List<Secret>
@@ -60,7 +60,7 @@ namespace web.identity.server.IdentityServer
 
                     AllowedScopes = new List<string>
                     {
-                        "sampleApi"
+                        "incidereServiceApi"
                     }
                 }
             };
