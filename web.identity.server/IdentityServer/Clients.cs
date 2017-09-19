@@ -1,10 +1,14 @@
 ﻿using IdentityServer3.Core.Models;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace web.identity.server.IdentityServer
 {
     public static class Clients
     {
+        private static string m_incidereBaseUrl = ConfigurationManager.AppSettings["IncidereBaseUrl"] ?? "http://localhost:50451/";
+        private static string m_idSvrBaseUrl = ConfigurationManager.AppSettings["IdSvrBaseUrl"] ?? "http://localhost:50450/";
+
         public static IEnumerable<Client> Get()
         {
             return new[]
@@ -18,12 +22,12 @@ namespace web.identity.server.IdentityServer
 
                     RedirectUris = new List<string>
                     {
-                        "http://localhost:50450/"
+                        $"{m_idSvrBaseUrl}"
                     },
 
                     PostLogoutRedirectUris = new List<string>
                     {
-                        "http://localhost:50450/"
+                        $"{m_idSvrBaseUrl}"
                     },
 
                     AllowAccessToAllScopes = true
@@ -37,12 +41,12 @@ namespace web.identity.server.IdentityServer
 
                     RedirectUris = new List<string>
                     {
-                        "http://localhost:50451/"
+                        $"{m_incidereBaseUrl}"
                     },
 
                     PostLogoutRedirectUris = new List<string>
                     {
-                        "http://localhost:50451/"
+                        $"{m_incidereBaseUrl}"
                     },
 
                     AllowAccessToAllScopes = true

@@ -9,6 +9,7 @@ using Microsoft.Owin.Security.OpenIdConnect;
 using Owin;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Security.Claims;
@@ -21,6 +22,15 @@ namespace incidere.debut
 {
     public class Startup
     {
+        private string m_incidereBaseUrl;
+        private string m_idSvrBaseUrl;
+
+        public Startup()
+        {
+            m_incidereBaseUrl = ConfigurationManager.AppSettings["IncidereBaseUrl"] ?? "http://localhost:50451/";
+            m_idSvrBaseUrl = ConfigurationManager.AppSettings["IdSvrBaseUrl"] ?? "http://localhost:50450/";
+        }
+
         public void Configuration(IAppBuilder app)
         {
             AntiForgeryConfig.UniqueClaimTypeIdentifier = Constants.ClaimTypes.Subject;
@@ -33,10 +43,10 @@ namespace incidere.debut
 
             app.UseOpenIdConnectAuthentication(new OpenIdConnectAuthenticationOptions
             {
-                Authority = "http://localhost:50450/identity",
+                Authority = $"{m_idSvrBaseUrl}identity",
                 ClientId = "mvc_incidere",
                 Scope = "openid profile roles incidereServiceApi",
-                RedirectUri = "http://localhost:50451/",
+                RedirectUri = $"{m_incidereBaseUrl}",
                 ResponseType = "id_token token",
                 SignInAsAuthenticationType = "Cookies",
 
@@ -82,7 +92,7 @@ namespace incidere.debut
 
             app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
             {
-                Authority = "http://localhost:50450/identity",
+                Authority = $"{m_idSvrBaseUrl}identity",
                 ValidationMode = ValidationMode.ValidationEndpoint,
 
                 RequiredScopes = new[] { "incidereServiceApi" }

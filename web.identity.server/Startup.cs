@@ -11,6 +11,7 @@ using Microsoft.Owin.Security.OpenIdConnect;
 using Owin;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Security.Claims;
@@ -25,6 +26,15 @@ namespace web.identity.server
 {
     public class Startup
     {
+        private string m_incidereBaseUrl;
+        private string m_idSvrBaseUrl;
+
+        public Startup()
+        {
+            m_incidereBaseUrl = ConfigurationManager.AppSettings["IncidereBaseUrl"] ?? "http://localhost:50451/";
+            m_idSvrBaseUrl = ConfigurationManager.AppSettings["IdSvrBaseUrl"] ?? "http://localhost:50450/";
+        }
+
         public void Configuration(IAppBuilder app)
         {
             AntiForgeryConfig.UniqueClaimTypeIdentifier = Constants.ClaimTypes.Subject;
@@ -59,10 +69,10 @@ namespace web.identity.server
 
             app.UseOpenIdConnectAuthentication(new OpenIdConnectAuthenticationOptions
             {
-                Authority = "http://localhost:50450/identity",
+                Authority = $"{m_idSvrBaseUrl}identity",
                 ClientId = "mvc",
                 Scope = "openid profile roles incidereServiceApi",
-                RedirectUri = "http://localhost:50450/",
+                RedirectUri = $"{m_idSvrBaseUrl}",
                 ResponseType = "id_token token",
                 SignInAsAuthenticationType = "Cookies",
                 UseTokenLifetime = false,

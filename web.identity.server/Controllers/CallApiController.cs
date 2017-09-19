@@ -10,6 +10,15 @@ namespace EmbeddedMvc.Controllers
 {
     public class CallApiController : Controller
     {
+        private string m_incidereBaseUrl;
+        private string m_idSvrBaseUrl;
+
+        public CallApiController()
+        {
+            m_incidereBaseUrl = ConfigurationManager.AppSettings["IncidereBaseUrl"] ?? "http://localhost:50451/";
+            m_idSvrBaseUrl = ConfigurationManager.AppSettings["IdSvrBaseUrl"] ?? "http://localhost:50450/";
+        }
+
         // GET: CallApi/ClientCredentials
         public async Task<ActionResult> ClientCredentials()
         {
@@ -36,14 +45,14 @@ namespace EmbeddedMvc.Controllers
             var client = new HttpClient();
             client.SetBearerToken(token);
 
-            var json = await client.GetStringAsync("http://localhost:50451/identity");
+            var json = await client.GetStringAsync($"{m_incidereBaseUrl}identity");
             return JArray.Parse(json).ToString();
         }
 
         private async Task<TokenResponse> GetTokenAsync()
         {
             var client = new TokenClient(
-                "http://localhost:50450/identity/connect/token",
+                $"{m_idSvrBaseUrl}identity/connect/token",
                 "mvc_incidere_service",
                 "secret");
 
