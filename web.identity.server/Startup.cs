@@ -1,4 +1,5 @@
-﻿using IdentityServer3.Core;
+﻿using IdentityModel.Client;
+using IdentityServer3.Core;
 using IdentityServer3.Core.Configuration;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.Owin;
@@ -11,6 +12,7 @@ using Owin;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens;
+using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
@@ -59,45 +61,44 @@ namespace web.identity.server
             {
                 Authority = "http://localhost:50450/identity",
                 ClientId = "mvc",
-                Scope = "openid profile roles",
+                Scope = "openid profile roles sampleApi",
                 RedirectUri = "http://localhost:50450/",
-                ResponseType = "id_token",
+                ResponseType = "id_token token",
                 SignInAsAuthenticationType = "Cookies",
+                UseTokenLifetime = false,
 
                 Notifications = new OpenIdConnectAuthenticationNotifications
                 {
-                    SecurityTokenValidated = n =>
+                    SecurityTokenValidated = async n =>
                     {
-                        var id = n.AuthenticationTicket.Identity;
-
-                        var name = id.FindFirst(Constants.ClaimTypes.Name);
-                        var givenName = id.FindFirst(Constants.ClaimTypes.GivenName);
-                        var familyName = id.FindFirst(Constants.ClaimTypes.FamilyName);
-                        var sub = id.FindFirst(Constants.ClaimTypes.Subject);
-                        var roles = id.FindAll(Constants.ClaimTypes.Role);
-
                         var nid = new ClaimsIdentity(
-                            id.AuthenticationType,
+                            n.AuthenticationTicket.Identity.AuthenticationType,
                             Constants.ClaimTypes.GivenName,
                             Constants.ClaimTypes.Role);
 
-                        if (null != name)
-                            nid.AddClaim(name);
-                        if (null != givenName)
-                            nid.AddClaim(givenName);
-                        if (null != familyName)
-                            nid.AddClaim(familyName);
-                        nid.AddClaim(sub);
-                        nid.AddClaims(roles);
-                        nid.AddClaim(new Claim("app_specific", "some data"));
+                        // get userinfo data
+                        var userInfoClient = new UserInfoClient(
+                            new Uri(n.Options.Authority + "/connect/userinfo"),
+                            n.ProtocolMessage.AccessToken);
 
+                        var userInfo = await userInfoClient.GetAsync();
+                        userInfo.Claims.ToList().ForEach(ui => nid.AddClaim(new Claim(ui.Item1, ui.Item2)));
+
+                        // keep the id_token for logout
                         nid.AddClaim(new Claim("id_token", n.ProtocolMessage.IdToken));
+
+                        // add access token for sample API
+                        nid.AddClaim(new Claim("access_token", n.ProtocolMessage.AccessToken));
+
+                        // keep track of access token expiration
+                        nid.AddClaim(new Claim("expires_at", DateTimeOffset.Now.AddSeconds(int.Parse(n.ProtocolMessage.ExpiresIn)).ToString()));
+
+                        // add some other app specific claim
+                        nid.AddClaim(new Claim("app_specific", "some data"));
 
                         n.AuthenticationTicket = new AuthenticationTicket(
                             nid,
                             n.AuthenticationTicket.Properties);
-
-                        return Task.FromResult(0);
                     },
 
                     RedirectToIdentityProvider = n =>
