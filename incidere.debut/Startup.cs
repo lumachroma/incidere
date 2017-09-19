@@ -1,4 +1,5 @@
-﻿using IdentityServer3.Core;
+﻿using IdentityServer3.AccessTokenValidation;
+using IdentityServer3.Core;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
@@ -87,6 +88,14 @@ namespace incidere.debut
                         return Task.FromResult(0);
                     }
                 }
+            });
+
+            app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
+            {
+                Authority = "http://localhost:50450/identity",
+                ValidationMode = ValidationMode.ValidationEndpoint,
+
+                RequiredScopes = new[] { "sampleApi" }
             });
         }
     }
