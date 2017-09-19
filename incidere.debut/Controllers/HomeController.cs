@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,11 +11,10 @@ namespace incidere.debut.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return View((User as ClaimsPrincipal).Claims);
         }
 
         public ActionResult Contact()
@@ -25,6 +22,12 @@ namespace incidere.debut.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Request.GetOwinContext().Authentication.SignOut();
+            return Redirect("/");
         }
     }
 }
