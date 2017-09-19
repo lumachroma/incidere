@@ -27,6 +27,25 @@ namespace web.identity.server.IdentityServer
                     },
 
                     AllowAccessToAllScopes = true
+                },
+                new Client
+                {
+                    Enabled = true,
+                    ClientName = "MVC Client (Incidere)",
+                    ClientId = "mvc_incidere",
+                    Flow = Flows.Implicit,
+
+                    RedirectUris = new List<string>
+                    {
+                        "http://localhost:50451/"
+                    },
+
+                    PostLogoutRedirectUris = new List<string>
+                    {
+                        "http://localhost:50451/"
+                    },
+
+                    AllowAccessToAllScopes = true
                 }
             };
         }
