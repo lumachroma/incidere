@@ -5,7 +5,6 @@ namespace incidere.debut.Models.LocalUser
 {
     public class ExternalUser : EntityCollection
     {
-
         public ExternalUser()
         {
         }

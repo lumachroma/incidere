@@ -7,7 +7,7 @@ namespace incidere.debut.Models.LocalUser
     {
         public LocalUser()
         {
-            this.ReferenceNo = Guid.NewGuid().ToString();
+            ReferenceNo = Guid.NewGuid().ToString();
         }
 
         public string ReferenceNo { get; set; }
