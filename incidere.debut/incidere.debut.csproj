@@ -229,6 +229,7 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Properties\PublishProfiles\incidere - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="incidere.app\entitydefinition\schemas.js" />
     <Content Include="incidere.app\main.js" />
     <Content Include="incidere.app\viewmodels\addressbooks-all.js" />
     <Content Include="incidere.app\viewmodels\home.js" />
