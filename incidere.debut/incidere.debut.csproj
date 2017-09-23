@@ -179,6 +179,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddressBook\Address.cs" />
+    <Compile Include="Models\AddressBook\AddressBook.cs" />
+    <Compile Include="Models\AddressBook\ContactInformation.cs" />
+    <Compile Include="Models\AddressBook\GeoLocation.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\EntityCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
