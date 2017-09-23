@@ -5,12 +5,20 @@
         'plugins': '../Scripts/durandal/plugins',
         'transitions': '../Scripts/durandal/transitions',
         'knockout': '../Scripts/knockout-3.4.2',
-        'jquery': '../Scripts/jquery-3.3.1',
-        'moment': '../Scripts/moment'
+        'bootstrap': '../Scripts/bootstrap',
+        'jquery': '../Scripts/jquery-3.1.1',
+        'moment': '../Scripts/moment',
+        'schemas': 'entitydefinition/schemas'
+    },
+    shim: {
+        'bootstrap': {
+            deps: ['jquery'],
+            exports: 'jQuery'
+        }
     }
 });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator'], function (system, app, viewLocator) {
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'bootstrap'], function (system, app, viewLocator) {
     //>>excludeStart("build", true);
     system.debug(true);
     //>>excludeEnd("build");
