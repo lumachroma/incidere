@@ -231,10 +231,12 @@
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="incidere.app\entitydefinition\schemas.js" />
     <Content Include="incidere.app\main.js" />
+    <Content Include="incidere.app\viewmodels\addressbook-details.js" />
     <Content Include="incidere.app\viewmodels\addressbooks-all.js" />
     <Content Include="incidere.app\viewmodels\home.js" />
     <Content Include="incidere.app\viewmodels\playground.js" />
     <Content Include="incidere.app\viewmodels\shell.js" />
+    <Content Include="incidere.app\views\addressbook-details.html" />
     <Content Include="incidere.app\views\addressbooks-all.html" />
     <Content Include="incidere.app\views\home.html" />
     <Content Include="incidere.app\views\playground.html" />
