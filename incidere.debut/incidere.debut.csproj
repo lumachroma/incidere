@@ -186,6 +186,8 @@
     <Compile Include="Models\AddressBook\GeoLocation.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\EntityCollection.cs" />
+    <Compile Include="Models\LocalUser\ExternalUser.cs" />
+    <Compile Include="Models\LocalUser\LocalUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
