@@ -4,7 +4,8 @@
         activate: function () {
             router.map([
                 { route: '', title: 'Home', moduleId: 'viewmodels/home', nav: true },
-                { route: 'playground', title: 'Playground', moduleId: 'viewmodels/playground', nav: true }
+                { route: 'playground', title: 'Playground', moduleId: 'viewmodels/playground', nav: true },
+                { route: 'addressbooks-all', title: 'Address Books', moduleId: 'viewmodels/addressbooks-all', nav: true }
             ]).buildNavigationModel();
             return router.activate();
         }
