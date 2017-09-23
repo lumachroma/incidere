@@ -25,6 +25,7 @@ namespace incidere.debut.Models.Internals.Settings
             CreatedBy = string.Empty;
             CreatedDate = DateTime.Now;
             Id = Guid.NewGuid().ToString();
+            WebId = Guid.NewGuid().ToString();
         }
     }
 }
