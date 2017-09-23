@@ -26,7 +26,7 @@ namespace incidere.debut.Api
         {
             m_entityName = nameof(LocalUser);
             m_entityRoute = "local-users";
-            m_baseUrl = ConfigurationManager.AppSettings["IncidereBaseUrl"] ?? "http://localhost:50521";
+            m_baseUrl = ConfigurationManager.AppSettings["IncidereBaseUrl"] ?? "http://localhost:50451";
             m_firebaseUrl = ConfigurationManager.AppSettings["FirebaseUrl"];
             m_firebaseDatabaseSecret = ConfigurationManager.AppSettings["FirebaseDatabaseSecret"];
             m_firebaseClient = new HttpClient { BaseAddress = new Uri(m_firebaseUrl) };
