@@ -242,6 +242,7 @@
     <Content Include="Views\CustomIncidereUser\Index.cshtml" />
     <Content Include="Views\CustomIncidereUser\Details.cshtml" />
     <Content Include="Views\CustomIncidereUser\Create.cshtml" />
+    <Content Include="Views\CustomIncidereUser\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

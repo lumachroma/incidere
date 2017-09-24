@@ -1,5 +1,6 @@
 ﻿using incidere.debut.Models.LocalUser;
 using System.Data;
+using System.Net;
 using System.Web.Mvc;
 using web.identity.server.Services;
 
@@ -71,25 +72,62 @@ namespace web.identity.server.Controllers
         }
 
         // GET: CustomIncidereUser/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            ViewBag.roleEditboxes = 5;
+
+            if (string.IsNullOrEmpty(id))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var localUser = m_incidereUserService.GetUser(id);
+            if (string.IsNullOrEmpty(localUser.FirebaseKey))
+            {
+                return HttpNotFound();
+            }
+
+            return View(localUser);
         }
 
         // POST: CustomIncidereUser/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Username,Password,Email,FirstName,LastName,DateOfBirth,Location,Roles")]
+            LocalUser localUser, string id)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var localUserFromSource = m_incidereUserService.GetUser(id);
+            if (string.IsNullOrEmpty(localUserFromSource.FirebaseKey))
+            {
+                return HttpNotFound();
+            }
+
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    localUser.Roles.RemoveAll(role => string.IsNullOrEmpty(role));
+                    localUser.ReferenceNo = localUserFromSource.ReferenceNo;
+                    localUser.ExternalUsers = localUserFromSource.ExternalUsers;
 
-                return RedirectToAction("Index");
+                    var result = m_incidereUserService.EditUser(localUser, id);
+                    if (result)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
             }
-            catch
+            catch (DataException)
             {
-                return View();
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
+
+            return View(localUser);
         }
 
         // GET: CustomIncidereUser/Delete/5
