@@ -28,6 +28,7 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Call API (User)", "UserCredentials", "CallApi")</li>
+                        <li>@Html.ActionLink("Incidere User", "Index", "CustomIncidereUser")</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
                     }
                 </ul>
