@@ -18,8 +18,8 @@ namespace incidere.debut.Models.LocalUser
         public string LastName { get; set; }
         public string DateOfBirth { get; set; }
         public string Location { get; set; }
-        public List<ExternalUser> ExternalUsers { get; } = new List<ExternalUser>();
-        public List<string> Roles { get; } = new List<string>();
+        public List<ExternalUser> ExternalUsers { get; set; } = new List<ExternalUser>();
+        public List<string> Roles { get; set; } = new List<string>();
 
         public override string ToString()
         {
