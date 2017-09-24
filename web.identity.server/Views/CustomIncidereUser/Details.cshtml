@@ -1,0 +1,134 @@
+﻿@model incidere.debut.Models.LocalUser.LocalUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FirebaseUser</h4>
+    <hr />
+    <h5>Local User</h5>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReferenceNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReferenceNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirebaseKey)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirebaseKey)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Roles)
+        </dt>
+
+        <dd>
+            @foreach (var role in Model.Roles)
+            {
+                @role<text>&nbsp;</text>
+            }
+        </dd>
+    </dl>
+    <hr />
+    <h5>External User(s)</h5>
+    <dl class="dl-horizontal">
+        @foreach (var externalUser in Model.ExternalUsers)
+        {
+            <dt>
+                Provider
+            </dt>
+
+            <dd>
+                @externalUser.Provider
+            </dd>
+
+            <dt>
+                ProviderId
+            </dt>
+
+            <dd>
+                @externalUser.ProviderId
+            </dd>
+
+            <dt>
+                Roles
+            </dt>
+
+            <dd>
+                @foreach (var role in externalUser.Roles)
+                {
+                    @role<text>&nbsp;</text>
+                }
+            </dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FirebaseKey }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

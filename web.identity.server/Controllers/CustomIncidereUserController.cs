@@ -21,9 +21,16 @@ namespace web.identity.server.Controllers
         }
 
         // GET: CustomIncidereUser/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            var incidereUser = m_incidereUserService.GetUser(id);
+
+            if (string.IsNullOrEmpty(incidereUser.FirebaseKey))
+            {
+                return HttpNotFound();
+            }
+
+            return View(incidereUser);
         }
 
         // GET: CustomIncidereUser/Create

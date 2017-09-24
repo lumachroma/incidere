@@ -240,6 +240,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\CallApi\ShowApiResult.cshtml" />
     <Content Include="Views\CustomIncidereUser\Index.cshtml" />
+    <Content Include="Views\CustomIncidereUser\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
