@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\incidere.debut\Models\Entity.cs" Link="Models\Entity.cs" />
+    <Compile Include="..\incidere.debut\Models\EntityCollection.cs" Link="Models\EntityCollection.cs" />
+    <Compile Include="..\incidere.debut\Models\LocalUser\ExternalUser.cs" Link="Models\LocalUser\ExternalUser.cs" />
+    <Compile Include="..\incidere.debut\Models\LocalUser\LocalUser.cs" Link="Models\LocalUser\LocalUser.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\LocalUser\" />
+  </ItemGroup>
+
+</Project>
