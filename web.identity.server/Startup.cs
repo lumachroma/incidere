@@ -76,7 +76,7 @@ namespace web.identity.server
             {
                 Authority = $"{m_idSvrBaseUrl}identity",
                 ClientId = "mvc",
-                Scope = "openid profile roles incidereServiceApi",
+                Scope = "openid profile roles extra incidereServiceApi",
                 RedirectUri = $"{m_idSvrBaseUrl}",
                 ResponseType = "id_token token",
                 SignInAsAuthenticationType = "Cookies",
