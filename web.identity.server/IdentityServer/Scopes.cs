@@ -41,9 +41,9 @@ namespace web.identity.server.IdentityServer
                     Claims = new List<ScopeClaim>
                     {
                         new ScopeClaim("role"),
-                        //new ScopeClaim("preferred_username"),
-                        //new ScopeClaim("email"),
-                        //new ScopeClaim("address")
+                        new ScopeClaim("preferred_username"),
+                        new ScopeClaim("email"),
+                        new ScopeClaim("address")
                     }
                 }
             };
