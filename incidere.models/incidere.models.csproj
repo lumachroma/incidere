@@ -5,14 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\incidere.debut\Models\AddressBook\Address.cs" Link="Models\AddressBook\Address.cs" />
+    <Compile Include="..\incidere.debut\Models\AddressBook\AddressBook.cs" Link="Models\AddressBook\AddressBook.cs" />
+    <Compile Include="..\incidere.debut\Models\AddressBook\ContactInformation.cs" Link="Models\AddressBook\ContactInformation.cs" />
+    <Compile Include="..\incidere.debut\Models\AddressBook\GeoLocation.cs" Link="Models\AddressBook\GeoLocation.cs" />
     <Compile Include="..\incidere.debut\Models\Entity.cs" Link="Models\Entity.cs" />
     <Compile Include="..\incidere.debut\Models\EntityCollection.cs" Link="Models\EntityCollection.cs" />
+    <Compile Include="..\incidere.debut\Models\Internals\Settings\Setting.cs" Link="Models\Internals\Settings\Setting.cs" />
     <Compile Include="..\incidere.debut\Models\LocalUser\ExternalUser.cs" Link="Models\LocalUser\ExternalUser.cs" />
     <Compile Include="..\incidere.debut\Models\LocalUser\LocalUser.cs" Link="Models\LocalUser\LocalUser.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\Internals\Settings\" />
     <Folder Include="Models\LocalUser\" />
+    <Folder Include="Models\AddressBook\" />
   </ItemGroup>
 
 </Project>
