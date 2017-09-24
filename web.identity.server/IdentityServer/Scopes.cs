@@ -14,10 +14,11 @@ namespace web.identity.server.IdentityServer
                     Enabled = true,
                     Name = "roles",
                     Type = ScopeType.Identity,
+                    IncludeAllClaimsForUser = true,
                     Claims = new List<ScopeClaim>
                     {
                         new ScopeClaim("role")
-                    }
+                    }                    
                 },
                 new Scope
                 {
@@ -26,6 +27,7 @@ namespace web.identity.server.IdentityServer
                     Name = "incidereServiceApi",
                     Description = "Access to API",
                     Type = ScopeType.Resource,
+                    IncludeAllClaimsForUser = true,
                     Claims = new List<ScopeClaim>
                     {
                         new ScopeClaim("role")

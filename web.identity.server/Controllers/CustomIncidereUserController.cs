@@ -16,14 +16,12 @@ namespace web.identity.server.Controllers
             m_incidereUserService = new IncidereUserService();
         }
 
-        // GET: CustomIncidereUser
         public ActionResult Index()
         {
             var incidereUsers = m_incidereUserService.GetUsers();
             return View(incidereUsers);
         }
 
-        // GET: CustomIncidereUser/Details/5
         public ActionResult Details(string id)
         {
             var incidereUser = m_incidereUserService.GetUser(id);
@@ -36,7 +34,6 @@ namespace web.identity.server.Controllers
             return View(incidereUser);
         }
 
-        // GET: CustomIncidereUser/Create
         public ActionResult Create()
         {
             ViewBag.roleEditboxes = 5;
@@ -44,7 +41,6 @@ namespace web.identity.server.Controllers
             return View();
         }
 
-        // POST: CustomIncidereUser/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Username,Password,Email,FirstName,LastName,DateOfBirth,Location,Roles")]
@@ -71,7 +67,6 @@ namespace web.identity.server.Controllers
             return View(localUser);
         }
 
-        // GET: CustomIncidereUser/Edit/5
         public ActionResult Edit(string id)
         {
             ViewBag.roleEditboxes = 5;
@@ -90,7 +85,6 @@ namespace web.identity.server.Controllers
             return View(localUser);
         }
 
-        // POST: CustomIncidereUser/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Username,Password,Email,FirstName,LastName,DateOfBirth,Location,Roles")]
@@ -130,7 +124,6 @@ namespace web.identity.server.Controllers
             return View(localUser);
         }
 
-        // GET: CustomIncidereUser/Delete/5
         public ActionResult Delete(string id, bool? saveChangesError = false)
         {
             if (string.IsNullOrEmpty(id))
@@ -152,7 +145,6 @@ namespace web.identity.server.Controllers
             return View(localUser);
         }
 
-        // POST: CustomIncidereUser/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(string id)
