@@ -45,10 +45,11 @@ namespace incidere.debut
             {
                 Authority = $"{m_idSvrBaseUrl}identity",
                 ClientId = "mvc_incidere",
-                Scope = "openid profile roles incidereServiceApi",
+                Scope = "openid profile roles extra incidereServiceApi",
                 RedirectUri = $"{m_incidereBaseUrl}",
                 ResponseType = "id_token token",
                 SignInAsAuthenticationType = "Cookies",
+                UseTokenLifetime = false,
 
                 Notifications = new OpenIdConnectAuthenticationNotifications
                 {
