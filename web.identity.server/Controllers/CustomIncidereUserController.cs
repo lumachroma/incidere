@@ -131,25 +131,52 @@ namespace web.identity.server.Controllers
         }
 
         // GET: CustomIncidereUser/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id, bool? saveChangesError = false)
         {
-            return View();
+            if (string.IsNullOrEmpty(id))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
+            }
+
+            var localUser = m_incidereUserService.GetUser(id);
+            if (string.IsNullOrEmpty(localUser.FirebaseKey))
+            {
+                return HttpNotFound();
+            }
+
+            return View(localUser);
         }
 
         // POST: CustomIncidereUser/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(string id)
         {
             try
             {
-                // TODO: Add delete logic here
+                var result = m_incidereUserService.DeleteUser(id);
+                if (!result)
+                {
+                    return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+                }
 
-                return RedirectToAction("Index");
+                var localUser = m_incidereUserService.GetUser(id);
+                if (!string.IsNullOrEmpty(localUser.FirebaseKey))
+                {
+                    return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+                }
             }
-            catch
+            catch (DataException)
             {
-                return View();
+                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
             }
+
+            return RedirectToAction("Index");
         }
     }
 }
