@@ -1,6 +1,7 @@
 ﻿using IdentityModel.Client;
 using IdentityServer3.Core;
 using IdentityServer3.Core.Configuration;
+using IdentityServer3.Core.Services;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
@@ -19,6 +20,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using web.identity.server.IdentityServer;
+using web.identity.server.Services;
 
 [assembly: OwinStartup(typeof(web.identity.server.Startup))]
 
@@ -40,6 +42,12 @@ namespace web.identity.server
             AntiForgeryConfig.UniqueClaimTypeIdentifier = Constants.ClaimTypes.Subject;
             JwtSecurityTokenHandler.InboundClaimTypeMap = new Dictionary<string, string>();
 
+            var factory = new IdentityServerServiceFactory()
+                .UseInMemoryClients(Clients.Get())
+                .UseInMemoryScopes(Scopes.Get());
+            var userService = new IncidereUserAuthenticationService();
+            factory.UserService = new Registration<IUserService>(resolver => userService);
+
             app.Map("/identity", idsrvApp =>
             {
                 idsrvApp.UseIdentityServer(new IdentityServerOptions
@@ -47,10 +55,7 @@ namespace web.identity.server
                     SiteName = "Web IdentityServer3",
                     SigningCertificate = LoadCertificate(),
 
-                    Factory = new IdentityServerServiceFactory()
-                        .UseInMemoryUsers(Users.Get())
-                        .UseInMemoryClients(Clients.Get())
-                        .UseInMemoryScopes(Scopes.Get()),
+                    Factory = factory,
 
                     AuthenticationOptions = new IdentityServer3.Core.Configuration.AuthenticationOptions
                     {
@@ -147,7 +152,7 @@ namespace web.identity.server
         X509Certificate2 LoadCertificate()
         {
             return new X509Certificate2(
-                string.Format(@"{0}\bin\identityServer\idsrv3test.pfx", AppDomain.CurrentDomain.BaseDirectory), "idsrv3test");
+                string.Format(@"{0}\bin\IdentityServer\idsrv3test.pfx", AppDomain.CurrentDomain.BaseDirectory), "idsrv3test");
         }
     }
 }
