@@ -82,7 +82,7 @@ namespace web.identity.server.Services
             return CreateOrEditUser(user, OperationType.Create);
         }
 
-        public bool EditLocalUser(LocalUser user, string id)
+        public bool EditUser(LocalUser user, string id)
         {
             return CreateOrEditUser(user, OperationType.Edit, id);
         }
