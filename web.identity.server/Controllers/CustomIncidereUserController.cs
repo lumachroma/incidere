@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using incidere.debut.Models.LocalUser;
+using System.Data;
+using System.Web.Mvc;
 using web.identity.server.Services;
 
 namespace web.identity.server.Controllers
@@ -36,23 +38,36 @@ namespace web.identity.server.Controllers
         // GET: CustomIncidereUser/Create
         public ActionResult Create()
         {
+            ViewBag.roleEditboxes = 5;
+
             return View();
         }
 
         // POST: CustomIncidereUser/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Username,Password,Email,FirstName,LastName,DateOfBirth,Location,Roles")]
+            LocalUser localUser)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    localUser.Roles.RemoveAll(role => string.IsNullOrEmpty(role));
 
-                return RedirectToAction("Index");
+                    var result = m_incidereUserService.CreateUser(localUser);
+                    if (result)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
             }
-            catch
+            catch (DataException)
             {
-                return View();
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
+
+            return View(localUser);
         }
 
         // GET: CustomIncidereUser/Edit/5
