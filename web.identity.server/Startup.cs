@@ -60,7 +60,7 @@ namespace web.identity.server
                     AuthenticationOptions = new IdentityServer3.Core.Configuration.AuthenticationOptions
                     {
                         EnablePostSignOutAutoRedirect = true,
-                        IdentityProviders = ConfigureIdentityProviders
+                        //IdentityProviders = ConfigureIdentityProviders
                     },
 
                     RequireSsl = false
@@ -122,32 +122,32 @@ namespace web.identity.server
                 }
             });
         }
-        private void ConfigureIdentityProviders(IAppBuilder app, string signInAsType)
-        {
-            var google = new GoogleOAuth2AuthenticationOptions
-            {
-                AuthenticationType = "Google",
-                Caption = "Sign-in with Google",
-                SignInAsAuthenticationType = signInAsType,
+        //private void ConfigureIdentityProviders(IAppBuilder app, string signInAsType)
+        //{
+        //    var google = new GoogleOAuth2AuthenticationOptions
+        //    {
+        //        AuthenticationType = "Google",
+        //        Caption = "Sign-in with Google",
+        //        SignInAsAuthenticationType = signInAsType,
 
-                // Google APIs Credentials: https://console.developers.google.com/apis/credentials?project=identityserver-lumachroma&organizationId=801644395166
-                ClientId = "703287403163-cldlftau1ikq7bcb3qg1v0msejpf7rmu.apps.googleusercontent.com",
-                ClientSecret = "JiTTgBocaU0kYrrQ9KJBeXbx"
-            };
-            app.UseGoogleAuthentication(google);
+        //        // Google APIs Credentials: https://console.developers.google.com/apis/credentials?project=identityserver-lumachroma&organizationId=801644395166
+        //        ClientId = "703287403163-cldlftau1ikq7bcb3qg1v0msejpf7rmu.apps.googleusercontent.com",
+        //        ClientSecret = "JiTTgBocaU0kYrrQ9KJBeXbx"
+        //    };
+        //    app.UseGoogleAuthentication(google);
 
-            var fb = new FacebookAuthenticationOptions
-            {
-                AuthenticationType = "Facebook",
-                Caption = "Sign-in with Facebook",
-                SignInAsAuthenticationType = signInAsType,
+        //    var fb = new FacebookAuthenticationOptions
+        //    {
+        //        AuthenticationType = "Facebook",
+        //        Caption = "Sign-in with Facebook",
+        //        SignInAsAuthenticationType = signInAsType,
 
-                // Facebook for Developers: https://developers.facebook.com/apps/273791976367235/dashboard/
-                AppId = "273791976367235",
-                AppSecret = "ee82053d9bde8b87b4a4b2e70ad971ee"
-            };
-            app.UseFacebookAuthentication(fb);
-        }
+        //        // Facebook for Developers: https://developers.facebook.com/apps/273791976367235/dashboard/
+        //        AppId = "273791976367235",
+        //        AppSecret = "ee82053d9bde8b87b4a4b2e70ad971ee"
+        //    };
+        //    app.UseFacebookAuthentication(fb);
+        //}
 
         X509Certificate2 LoadCertificate()
         {
