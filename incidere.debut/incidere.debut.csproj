@@ -179,6 +179,7 @@
     <Compile Include="Controllers\CustomConfigController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdentityController.cs" />
+    <Compile Include="Controllers\IncidereAdminController.cs" />
     <Compile Include="Controllers\IncidereController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -230,6 +231,14 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Properties\PublishProfiles\incidere - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="incidere.admin\entitydefinition\schemas.js" />
+    <Content Include="incidere.admin\main.js" />
+    <Content Include="incidere.admin\viewmodels\dashboard.js" />
+    <Content Include="incidere.admin\viewmodels\playground.js" />
+    <Content Include="incidere.admin\viewmodels\shell.js" />
+    <Content Include="incidere.admin\views\dashboard.html" />
+    <Content Include="incidere.admin\views\playground.html" />
+    <Content Include="incidere.admin\views\shell.html" />
     <Content Include="incidere.app\entitydefinition\schemas.js" />
     <Content Include="incidere.app\main.js" />
     <Content Include="incidere.app\viewmodels\addressbook-details.js" />
@@ -296,6 +305,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Incidere\Index.cshtml" />
+    <Content Include="Views\IncidereAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
