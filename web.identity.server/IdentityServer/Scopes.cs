@@ -22,13 +22,15 @@ namespace web.identity.server.IdentityServer
                 new Scope
                 {
                     Enabled = true,
+                    DisplayName = "Extra",
                     Name = "extra",
                     Type = ScopeType.Identity,
                     Claims = new List<ScopeClaim>
                     {
                         new ScopeClaim("preferred_username"),
                         new ScopeClaim("email"),
-                        new ScopeClaim("address")
+                        new ScopeClaim("address"),
+                        new ScopeClaim("role")
                     }
                 },
                 new Scope
