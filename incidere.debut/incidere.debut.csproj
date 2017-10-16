@@ -236,11 +236,13 @@
     <Content Include="incidere.admin\entitydefinition\schemas.js" />
     <Content Include="incidere.admin\main.js" />
     <Content Include="incidere.admin\viewmodels\dashboard.js" />
+    <Content Include="incidere.admin\viewmodels\local-users-all.js" />
     <Content Include="incidere.admin\viewmodels\playground.js" />
     <Content Include="incidere.admin\viewmodels\profile.js" />
     <Content Include="incidere.admin\viewmodels\setting.js" />
     <Content Include="incidere.admin\viewmodels\shell.js" />
     <Content Include="incidere.admin\views\dashboard.html" />
+    <Content Include="incidere.admin\views\local-users-all.html" />
     <Content Include="incidere.admin\views\playground.html" />
     <Content Include="incidere.admin\views\profile.html" />
     <Content Include="incidere.admin\views\setting.html" />

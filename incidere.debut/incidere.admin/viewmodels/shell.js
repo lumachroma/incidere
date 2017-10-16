@@ -7,7 +7,8 @@
                 { route: '', title: 'Dashboard', moduleId: 'viewmodels/dashboard', nav: true },
                 { route: 'profile', title: 'Profile', moduleId: 'viewmodels/profile', nav: true },
                 { route: 'setting', title: 'Setting', moduleId: 'viewmodels/setting', nav: true },
-                { route: 'playground', title: 'Playground', moduleId: 'viewmodels/playground', nav: true }
+                { route: 'playground', title: 'Playground', moduleId: 'viewmodels/playground', nav: true },
+                { route: 'local-users-all', title: 'Users', moduleId: 'viewmodels/local-users-all', nav: false }
             ]).buildNavigationModel();
             return router.activate();
         }
