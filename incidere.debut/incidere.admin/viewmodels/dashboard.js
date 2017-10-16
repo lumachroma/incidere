@@ -1,11 +1,15 @@
 ﻿define(["services/config"], function (config) {
-
-    return {
-        activate: function () {
+    var test,
+        activate = function () {
             console.log(config.application_name);
         },
-        attached: function () {
+        attached = function () {
 
-        }
+        };
+
+    return {
+        config: config,
+        activate: activate,
+        attached: attached
     };
 });

@@ -179,6 +179,7 @@
     <Compile Include="Controllers\CustomConfigController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdentityController.cs" />
+    <Compile Include="Controllers\IncidereAccountController.cs" />
     <Compile Include="Controllers\IncidereAdminController.cs" />
     <Compile Include="Controllers\IncidereController.cs" />
     <Compile Include="Global.asax.cs">
@@ -235,9 +236,13 @@
     <Content Include="incidere.admin\main.js" />
     <Content Include="incidere.admin\viewmodels\dashboard.js" />
     <Content Include="incidere.admin\viewmodels\playground.js" />
+    <Content Include="incidere.admin\viewmodels\profile.js" />
+    <Content Include="incidere.admin\viewmodels\setting.js" />
     <Content Include="incidere.admin\viewmodels\shell.js" />
     <Content Include="incidere.admin\views\dashboard.html" />
     <Content Include="incidere.admin\views\playground.html" />
+    <Content Include="incidere.admin\views\profile.html" />
+    <Content Include="incidere.admin\views\setting.html" />
     <Content Include="incidere.admin\views\shell.html" />
     <Content Include="incidere.app\entitydefinition\schemas.js" />
     <Content Include="incidere.app\main.js" />
