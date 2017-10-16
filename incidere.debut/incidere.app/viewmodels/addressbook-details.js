@@ -25,6 +25,7 @@
                 }
             },
             defultOperationEndpoint = function (json, endpoint, verb, successMessage) {
+                isBusy(true);
                 context.send(json, `/${endpoint}`, verb)
                     .done(function (result) {
                         console.log(result);
