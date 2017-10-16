@@ -7,6 +7,7 @@
         'knockout': '../Scripts/knockout-3.4.2',
         'bootstrap': '../Scripts/bootstrap',
         'jquery': '../Scripts/jquery-3.1.1',
+        'jquery.validate': '../Scripts/jquery.validate',
         'moment': '../Scripts/moment',
         'schemas': 'entitydefinition/schemas'
     },
@@ -14,11 +15,15 @@
         'bootstrap': {
             deps: ['jquery'],
             exports: 'jQuery'
+        },
+        'jquery.validate': {
+            deps: ['jquery'],
+            exports: 'jQuery'
         }
     }
 });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'bootstrap'], function (system, app, viewLocator) {
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'bootstrap', 'jquery.validate'], function (system, app, viewLocator) {
     //>>excludeStart("build", true);
     system.debug(true);
     //>>excludeEnd("build");
