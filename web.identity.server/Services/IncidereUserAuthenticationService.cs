@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 
 namespace web.identity.server.Services
 {
@@ -22,11 +23,13 @@ namespace web.identity.server.Services
 
         public override Task AuthenticateLocalAsync(LocalAuthenticationContext context)
         {
-            var user = IncidereUsers.SingleOrDefault(x => x.Username == context.UserName && x.Password == context.Password);
+            var user = IncidereUsers.SingleOrDefault(x => x.Username == context.UserName
+                && Crypto.VerifyHashedPassword(x.Password, context.Password));
             if (user == null)
             {
                 RefreshUsersList();
-                user = IncidereUsers.SingleOrDefault(x => x.Username == context.UserName && x.Password == context.Password);
+                user = IncidereUsers.SingleOrDefault(x => x.Username == context.UserName
+                    && Crypto.VerifyHashedPassword(x.Password, context.Password));
                 if (user == null)
                 {
                     return Task.FromResult(0);
