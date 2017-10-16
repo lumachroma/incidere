@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "incidere.debut", "incidere.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web.identity.server", "web.identity.server\web.identity.server.csproj", "{23CB19C4-6C73-4C76-98A6-A8CCDC555FC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "incidere.models", "incidere.models\incidere.models.csproj", "{549D1A1C-68E9-4E14-A802-5E3A4BF54E85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "incidere.models", "incidere.models\incidere.models.csproj", "{549D1A1C-68E9-4E14-A802-5E3A4BF54E85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
