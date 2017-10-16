@@ -63,7 +63,7 @@ namespace web.identity.server.Services
                     Password = localUser.Password,
                     Email = localUser.Email
                 };
-                customLocalUsers.Claims.Add(new Claim(Constants.ClaimTypes.Subject, localUser.Id));
+                customLocalUsers.Claims.Add(new Claim(Constants.ClaimTypes.Subject, localUser.FirebaseKey));
                 customLocalUsers.Claims.Add(new Claim(Constants.ClaimTypes.PreferredUserName, localUser.Username));
                 customLocalUsers.Claims.Add(new Claim(Constants.ClaimTypes.Email, localUser.Email));
                 customLocalUsers.Claims.Add(new Claim(Constants.ClaimTypes.GivenName, localUser.FirstName));
