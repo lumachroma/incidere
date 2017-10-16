@@ -4,6 +4,7 @@
             id = ko.observable(),
             showEditForm = ko.observable(false),
             entity = ko.observable(new schemas.LocalUser(system.guid())),
+            userOldPassword = ko.observable(),
             userNewPassword = ko.observable(),
             userConfirmPassword = ko.observable(),
             activate = function () {
@@ -22,6 +23,7 @@
                     });
             },
             defultOperationEndpoint = function (json, endpoint, verb, successMessage) {
+                isBusy(true);
                 context.send(json, `/${endpoint}`, verb)
                     .done(function (result) {
                         console.log(result);
@@ -50,17 +52,39 @@
                     console.log("#profile-password-form invalid");
                     return;
                 }
-                // TODO: move logic to mvc controller
                 if (!(userNewPassword() === userConfirmPassword() && userConfirmPassword().length >= 8)) {
                     console.log("password invalid");
                     return;
                 }
-                entity().Password(userConfirmPassword());
-                var data = ko.toJSON(entity);
-                var endpoint = `api/local-users/${id()}`;
-                var msg = "Successfully edited.";
-                console.log(data);
-                defultOperationEndpoint(data, endpoint, "PUT", msg);
+                var json = JSON.stringify({
+                    "OldPassword": userOldPassword(),
+                    "NewPassword": userNewPassword(),
+                    "ConfirmPassword": userConfirmPassword()
+                });
+                isBusy(true);
+                context.post(json, `/incidere-account/change-password/${id()}`, {})
+                    .done(function (result) {
+                        console.log(result);
+                        isBusy(false);
+                        app.showMessage("Successfully edited.", config.application_name, ["OK"])
+                            .done(function (result) {
+                                if (result == "OK") {
+                                    backToEntityList();
+                                }
+                            });
+                    }).fail(function (e) {
+                        console.log(e.status);
+                        console.log(e.statusText);
+                        isBusy(false);
+                        app.showMessage(e.statusText, config.application_name, ["OK"])
+                            .done(function (result) {
+                                if (result == "OK") {
+                                    userOldPassword(null);
+                                    userNewPassword(null);
+                                    userConfirmPassword(null);
+                                }
+                            });
+                    });
             },
             toggleShowEditForm = function () {
                 showEditForm(!showEditForm());
@@ -71,6 +95,9 @@
             attached = function () {
                 $("#profile-password-form").validate({
                     rules: {
+                        OldPassword: {
+                            required: true
+                        },
                         NewPassword: {
                             required: true,
                             minlength: 8
@@ -82,14 +109,17 @@
                         }
                     },
                     messages: {
-                        NewPassword: {
-                            required: "Please provide a password.",
-                            minlength: "Your password must be at least 8 characters long."
+                        OldPassword: {
+                            required: "Please provide old password."
                         },
-                        confirm_password: {
-                            required: "Please provide a password.",
-                            minlength: "Your password must be at least 8 characters long.",
-                            equalTo: "Please enter the same password as above."
+                        NewPassword: {
+                            required: "Please provide new password.",
+                            minlength: "Your new password must be at least 8 characters long."
+                        },
+                        ConfirmPassword: {
+                            required: "Please confirm new password.",
+                            minlength: "Your new password must be at least 8 characters long.",
+                            equalTo: "Your new passwords must be the same."
                         }
                     }
                 });
@@ -100,11 +130,15 @@
             deactivate = function () {
                 id(null);
                 showEditForm(false);
+                userOldPassword(null);
+                userNewPassword(null);
+                userConfirmPassword(null);
             };
 
         return {
             id: id,
             entity: entity,
+            userOldPassword: userOldPassword,
             userNewPassword: userNewPassword,
             userConfirmPassword: userConfirmPassword,
             editEntity: editEntity,

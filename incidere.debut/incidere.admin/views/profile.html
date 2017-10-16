@@ -6,19 +6,13 @@
         <div>
             <!--ko ifnot: showEditForm-->
             <div class="panel panel-default">
-                <div class="panel-heading">Bio</div>
+                <div class="panel-heading">Bio <i class="fa fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i></div>
                 <div class="panel-body">
                     <form class="form-horizontal" data-bind="with: entity">
                         <div class="form-group">
                             <label class="col-md-3 control-label">Username</label>
                             <div class="col-md-6">
                                 <p class="form-control-static"><span data-bind="text: Username"></span></p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Password</label>
-                            <div class="col-md-6">
-                                <p class="form-control-static"><span data-bind="text: Password"></span></p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -59,19 +53,13 @@
         <div>
             <!--ko if: showEditForm-->
             <div class="panel panel-default">
-                <div class="panel-heading">Bio</div>
+                <div class="panel-heading">Bio <i class="fa fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i></div>
                 <div class="panel-body">
                     <form class="form-horizontal" data-bind="with: entity" id="profile-bio-form">
                         <div class="form-group">
                             <label class="col-md-3 control-label">Username</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" placeholder="Username" data-bind="value: Username" disabled />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Password</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Password" data-bind="value: Password" disabled />
                             </div>
                         </div>
                         <div class="form-group">
@@ -113,31 +101,31 @@
     <div class="col-md-6 col-sm-6 col-xs-12">
         <div>
             <div class="panel panel-default">
-                <div class="panel-heading">Password</div>
+                <div class="panel-heading">Password <i class="fa fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i></div>
                 <div class="panel-body">
-                    <form class="form-horizontal" data-bind="with: entity" id="profile-password-form">
+                    <form class="form-horizontal" id="profile-password-form">
                         <div class="form-group">
                             <label class="col-md-3 control-label">Old Password</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Password" name="Password" id="Password" data-bind="value: Password" disabled />
+                                <input type="text" class="form-control" placeholder="Old Password" name="OldPassword" id="OldPassword" data-bind="value: userOldPassword" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">New Password</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Password" name="NewPassword" id="NewPassword" data-bind="value: $root.userNewPassword" />
+                                <input type="text" class="form-control" placeholder="New Password" name="NewPassword" id="NewPassword" data-bind="value: userNewPassword" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 control-label">Confirm New Password</label>
+                            <label class="col-md-3 control-label">Confirm Password</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Password" name="ConfirmPassword" id="ConfirmPassword" data-bind="value: $root.userConfirmPassword" />
+                                <input type="text" class="form-control" placeholder="Confirm Password" name="ConfirmPassword" id="ConfirmPassword" data-bind="value: userConfirmPassword" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-6">
-                                <button class="btn btn-primary" data-bind="click: $root.editPassword">Update Password</button>
-                                <button class="btn btn-default" data-bind="click: $root.backToEntityList">Back</button>
+                                <button class="btn btn-primary" data-bind="click: editPassword">Update Password</button>
+                                <button class="btn btn-default" data-bind="click: backToEntityList">Back</button>
                             </div>
                         </div>
                     </form>
