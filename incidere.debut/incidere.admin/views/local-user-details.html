@@ -1,0 +1,156 @@
+﻿﻿<div>
+    <h3>
+        <i class="fa fa-user-circle-o"></i> User Details
+        <i class="fa fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i>
+    </h3>
+    <hr />
+
+    <!--ko ifnot: showEditForm-->
+     <form class="form-horizontal" data-bind="with: entity">
+         <div class="form-group">
+             <label class="col-md-2 control-label">ReferenceNo</label>
+             <div class="col-md-6">
+                 <p class="form-control-static"><span data-bind="text: ReferenceNo"></span></p>
+             </div>
+         </div>
+         <div class="form-group">
+             <label class="col-md-2 control-label">Username</label>
+             <div class="col-md-6">
+                 <p class="form-control-static"><span data-bind="text: Username"></span></p>
+             </div>
+         </div>
+         <div class="form-group">
+             <label class="col-md-2 control-label">Password</label>
+             <div class="col-md-6">
+                 <p class="form-control-static"><span data-bind="text: Password"></span></p>
+             </div>
+         </div>
+         <div class="form-group">
+             <label class="col-md-2 control-label">Email</label>
+             <div class="col-md-6">
+                 <p class="form-control-static"><span data-bind="text: Email"></span></p>
+             </div>
+         </div>
+         <div class="form-group">
+             <label class="col-md-2 control-label">FirstName</label>
+             <div class="col-md-6">
+                 <p class="form-control-static"><span data-bind="text: FirstName"></span></p>
+             </div>
+         </div>
+         <div class="form-group">
+             <label class="col-md-2 control-label">LastName</label>
+             <div class="col-md-6">
+                 <p class="form-control-static"><span data-bind="text: LastName"></span></p>
+             </div>
+         </div>
+         <div class="form-group">
+             <label class="col-md-2 control-label">DateOfBirth</label>
+             <div class="col-md-6">
+                 <p class="form-control-static"><span data-bind="text: DateOfBirth"></span></p>
+             </div>
+         </div>
+         <div class="form-group">
+             <label class="col-md-2 control-label">Location</label>
+             <div class="col-md-6">
+                 <p class="form-control-static"><span data-bind="text: Location"></span></p>
+             </div>
+         </div>
+         <div class="form-group">
+             <label class="col-md-2 control-label">Roles</label>
+             <div class="col-md-6">
+                 <p class="form-control-static"><span data-bind="text: Roles"></span></p>
+             </div>
+         </div>
+         <div class="form-group">
+             <div class="col-md-offset-2 col-md-6">
+                 <button class="btn btn-primary" data-bind="click: $root.toggleShowEditForm">Edit</button>
+                 <button class="btn btn-primary" data-bind="click: $root.deleteEntity">Delete</button>
+                 <button class="btn btn-default" data-bind="click: $root.backToEntityList">Back</button>
+             </div>
+         </div>
+     </form>
+    <!--/ko-->
+    <!--ko if: showEditForm-->
+    <form class="form-horizontal" data-bind="with: entity">
+        <div class="form-group">
+            <label class="col-md-2 control-label">ReferenceNo</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="ReferenceNo" data-bind="value: ReferenceNo" disabled />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Username</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Username" data-bind="value: Username" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Password</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Password" data-bind="value: Password" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Email</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Email" data-bind="value: Email" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">FirstName</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="FirstName" data-bind="value: FirstName" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">LastName</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="LastName" data-bind="value: LastName" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">DateOfBirth</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="DateOfBirth" data-bind="value: DateOfBirth" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Location</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Location" data-bind="value: Location" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Roles</label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Roles" id="GroupsInput" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" data-bind="click: addChildItem(Roles, document.getElementById('GroupsInput').value)">Add</button>
+                    </span>
+                </div>
+                <ul class="list-inline" data-bind="foreach: Roles">
+                    <li>
+                        <span data-bind="text: $data"></span>
+                        <a class="btn btn-link" data-bind="click: $parent.removeChildItem($parent.Roles, $data)"><i class="fa fa-trash"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <!--ko ifnot: $root.id() === "0"-->
+                <button class="btn btn-primary" data-bind="click: $root.editEntity">Edit</button>
+                <button class="btn btn-default" data-bind="click: $root.toggleShowEditForm">Cancel</button>
+                <!--/ko-->
+                <!--ko if: $root.id() === "0"-->
+                <button class="btn btn-primary" data-bind="click: $root.addEntity">Add</button>
+                <button class="btn btn-default" data-bind="click: $root.backToEntityList">Back</button>
+                <!--/ko-->
+            </div>
+        </div>
+    </form>
+    <!--/ko-->
+
+    <hr />
+</div>
