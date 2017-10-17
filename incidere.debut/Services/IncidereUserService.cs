@@ -13,12 +13,14 @@ namespace incidere.debut.Services
     {
         enum OperationType { GetAll, GetOne, Create, Edit, Delete };
         private string m_incidereServiceUrl;
+        private string m_incidereServiceApiEndpoint;
         private HttpClient m_incidereServiceClient;
 
         public IncidereUserService()
         {
             m_incidereServiceUrl = ConfigurationManager.AppSettings["IncidereBaseUrl"] ?? "http://localhost:50451";
             m_incidereServiceClient = new HttpClient { BaseAddress = new Uri(m_incidereServiceUrl) };
+            m_incidereServiceApiEndpoint = "api/local-users";
         }
 
         public List<LocalUser> GetUsers()
@@ -26,7 +28,7 @@ namespace incidere.debut.Services
             var localUsers = new List<LocalUser>();
             try
             {
-                var output = m_incidereServiceClient.GetStringAsync("api/local-users").Result;
+                var output = m_incidereServiceClient.GetStringAsync(m_incidereServiceApiEndpoint).Result;
                 try
                 {
                     var json = JObject.Parse(output).SelectToken("$._results");
@@ -57,7 +59,7 @@ namespace incidere.debut.Services
             {
                 try
                 {
-                    var output = m_incidereServiceClient.GetStringAsync($"api/local-users/{id}").Result;
+                    var output = m_incidereServiceClient.GetStringAsync($"{m_incidereServiceApiEndpoint}/{id}").Result;
                     try
                     {
                         var json = JObject.Parse(output).SelectToken("$._result");
@@ -94,7 +96,7 @@ namespace incidere.debut.Services
 
             try
             {
-                response = m_incidereServiceClient.DeleteAsync($"api/local-users/{id}").Result;
+                response = m_incidereServiceClient.DeleteAsync($"{m_incidereServiceApiEndpoint}/{id}").Result;
                 if (response.IsSuccessStatusCode)
                 {
                     var output = response.Content.ReadAsStringAsync().Result;
@@ -128,9 +130,9 @@ namespace incidere.debut.Services
                 var response = new HttpResponseMessage();
 
                 if (operation == OperationType.Create)
-                    response = m_incidereServiceClient.PostAsync("api/local-users", content).Result;
+                    response = m_incidereServiceClient.PostAsync(m_incidereServiceApiEndpoint, content).Result;
                 else if (operation == OperationType.Edit)
-                    response = m_incidereServiceClient.PutAsync($"api/local-users/{id}", content).Result;
+                    response = m_incidereServiceClient.PutAsync($"{m_incidereServiceApiEndpoint}/{id}", content).Result;
                 else
                     return result;
 
