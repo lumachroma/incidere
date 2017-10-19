@@ -13,12 +13,14 @@ namespace web.identity.server.Services
     {
         enum OperationType { GetAll, GetOne, Create, Edit, Delete };
         private string m_incidereServiceUrl;
+        private string m_incidereServiceApiEndpoint;
         private HttpClient m_incidereServiceClient;
 
         public IncidereUserService()
         {
             m_incidereServiceUrl = ConfigurationManager.AppSettings["IncidereBaseUrl"] ?? "http://localhost:50451";
             m_incidereServiceClient = new HttpClient { BaseAddress = new Uri(m_incidereServiceUrl) };
+            m_incidereServiceApiEndpoint = "api/local-users";
         }
 
         public List<LocalUser> GetUsers()
@@ -26,7 +28,7 @@ namespace web.identity.server.Services
             var localUsers = new List<LocalUser>();
             try
             {
-                var output = m_incidereServiceClient.GetStringAsync("api/local-users").Result;
+                var output = m_incidereServiceClient.GetStringAsync(m_incidereServiceApiEndpoint).Result;
                 try
                 {
                     var json = JObject.Parse(output).SelectToken("$._results");
@@ -57,7 +59,7 @@ namespace web.identity.server.Services
             {
                 try
                 {
-                    var output = m_incidereServiceClient.GetStringAsync($"api/local-users/{id}").Result;
+                    var output = m_incidereServiceClient.GetStringAsync($"{m_incidereServiceApiEndpoint}/{id}").Result;
                     try
                     {
                         var json = JObject.Parse(output).SelectToken("$._result");
@@ -77,14 +79,14 @@ namespace web.identity.server.Services
             return localUser;
         }
 
-        public bool CreateUser(LocalUser user)
+        public LocalUser CreateUser(LocalUser item)
         {
-            return CreateOrEditUser(user, OperationType.Create);
+            return CreateOrEditUser(item, OperationType.Create);
         }
 
-        public bool EditUser(LocalUser user, string id)
+        public LocalUser EditUser(LocalUser item, string id)
         {
-            return CreateOrEditUser(user, OperationType.Edit, id);
+            return CreateOrEditUser(item, OperationType.Edit, id);
         }
 
         public bool DeleteUser(string id)
@@ -94,7 +96,7 @@ namespace web.identity.server.Services
 
             try
             {
-                response = m_incidereServiceClient.DeleteAsync($"api/local-users/{id}").Result;
+                response = m_incidereServiceClient.DeleteAsync($"{m_incidereServiceApiEndpoint}/{id}").Result;
                 if (response.IsSuccessStatusCode)
                 {
                     var output = response.Content.ReadAsStringAsync().Result;
@@ -117,10 +119,10 @@ namespace web.identity.server.Services
             return result;
         }
 
-        private bool CreateOrEditUser(LocalUser localUser, OperationType operation, string id = null)
+        private LocalUser CreateOrEditUser(LocalUser item, OperationType operation, string id = null)
         {
-            var result = false;
-            var json = JsonConvert.SerializeObject(localUser);
+            var localUser = new LocalUser();
+            var json = JsonConvert.SerializeObject(item);
             var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
 
             try
@@ -128,32 +130,32 @@ namespace web.identity.server.Services
                 var response = new HttpResponseMessage();
 
                 if (operation == OperationType.Create)
-                    response = m_incidereServiceClient.PostAsync("api/local-users", content).Result;
+                    response = m_incidereServiceClient.PostAsync(m_incidereServiceApiEndpoint, content).Result;
                 else if (operation == OperationType.Edit)
-                    response = m_incidereServiceClient.PutAsync($"api/local-users/{id}", content).Result;
+                    response = m_incidereServiceClient.PutAsync($"{m_incidereServiceApiEndpoint}/{id}", content).Result;
                 else
-                    return result;
+                    return localUser;
 
                 if (response.IsSuccessStatusCode)
                 {
                     var output = response.Content.ReadAsStringAsync().Result;
                     try
                     {
-                        var success = JObject.Parse(output).SelectToken("_status").SelectToken("success");
-                        result = success.Value<bool>();
+                        var result = JObject.Parse(output).SelectToken("_result");
+                        localUser = result.ToObject<LocalUser>();
                     }
                     catch (Exception)
                     {
-                        return result;
+                        return localUser;
                     }
                 }
             }
             catch (Exception)
             {
-                return result;
+                return localUser;
             }
 
-            return result;
+            return localUser;
         }
     }
 }

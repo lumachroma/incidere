@@ -53,7 +53,7 @@ namespace web.identity.server.Controllers
                     localUser.Roles.RemoveAll(role => string.IsNullOrEmpty(role));
 
                     var result = m_incidereUserService.CreateUser(localUser);
-                    if (result)
+                    if (!string.IsNullOrEmpty(result.FirebaseKey))
                     {
                         return RedirectToAction("Index");
                     }
@@ -110,7 +110,7 @@ namespace web.identity.server.Controllers
                     localUser.ExternalUsers = localUserFromSource.ExternalUsers;
 
                     var result = m_incidereUserService.EditUser(localUser, id);
-                    if (result)
+                    if (!string.IsNullOrEmpty(result.FirebaseKey))
                     {
                         return RedirectToAction("Index");
                     }
