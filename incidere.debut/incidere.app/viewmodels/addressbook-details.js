@@ -1,5 +1,5 @@
-﻿define(['knockout', 'schemas', 'durandal/system', 'durandal/app', 'plugins/router', 'services/datacontext'],
-    function (ko, schemas, system, app, router, context) {
+﻿define(['knockout', 'schemas', 'durandal/system', 'durandal/app', 'plugins/router', 'services/config', 'services/datacontext'],
+    function (ko, schemas, system, app, router, config, context) {
         var isBusy = ko.observable(false),
             id = ko.observable(),
             showEditForm = ko.observable(false),
@@ -13,14 +13,20 @@
                     isBusy(true);
                     context.get(`/api/address-books/${id()}`, true, {})
                         .done(function (result) {
-                            console.log(result);
+                            //console.log(result);
                             entity(new schemas.AddressBook(result._result));
-                            //console.log(ko.toJSON(entity));
+                            console.log(ko.toJSON(entity));
                             isBusy(false);
                         }).fail(function (e) {
                             console.log(e.status);
                             console.log(e.statusText);
                             isBusy(false);
+                            app.showMessage(`${e.status}: ${e.statusText}. Invalid Entity Id: ${id()}`, config.application_name, ["OK"])
+                                .done(function (result) {
+                                    if (result == "OK") {
+                                        router.navigate("addressbooks-all");
+                                    }
+                                });
                         });
                 }
             },
@@ -30,7 +36,7 @@
                     .done(function (result) {
                         console.log(result);
                         isBusy(false);
-                        app.showMessage(successMessage, "MVC Durandal", ["OK"])
+                        app.showMessage(successMessage, config.application_name, ["OK"])
                             .done(function (result) {
                                 if (result == "OK") {
                                     router.navigate("addressbooks-all");
@@ -61,7 +67,7 @@
                 var endpoint = `api/address-books/${id()}`;
                 var msg = "Successfully deleted.";
                 //console.log(data);
-                app.showMessage("Are you sure you want to delete?", "MVC Durandal", ["Yes", "No"])
+                app.showMessage("Are you sure you want to delete?", config.application_name, ["Yes", "No"])
                     .done(function (result) {
                         if (result === "No") {
                             return
