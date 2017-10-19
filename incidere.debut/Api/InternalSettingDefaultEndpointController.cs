@@ -245,7 +245,8 @@ namespace incidere.debut.Api
             }
 
             var output = await response.Content.ReadAsStringAsync();
-            var itemId = JObject.Parse(output).SelectToken("name");
+            var itemId = JObject.Parse(output).SelectToken("name").ToString();
+            item.FirebaseKey = itemId;
 
             var status = new { success = resultSuccess, status = resultStatus, id = itemId };
             var links = new List<object>();
