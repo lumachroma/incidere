@@ -12,6 +12,7 @@ namespace incidere.debut.Models.Internals.Settings
         public string Value { get; set; }
         public string Subject { get; set; }
         public string Text { get; set; }
+        public bool IsActive { get; set; }
 
         public override string ToString()
         {
