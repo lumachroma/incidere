@@ -79,14 +79,14 @@ namespace incidere.debut.Services
             return localUser;
         }
 
-        public bool CreateUser(LocalUser user)
+        public LocalUser CreateUser(LocalUser item)
         {
-            return CreateOrEditUser(user, OperationType.Create);
+            return CreateOrEditUser(item, OperationType.Create);
         }
 
-        public bool EditUser(LocalUser user, string id)
+        public LocalUser EditUser(LocalUser item, string id)
         {
-            return CreateOrEditUser(user, OperationType.Edit, id);
+            return CreateOrEditUser(item, OperationType.Edit, id);
         }
 
         public bool DeleteUser(string id)
@@ -119,10 +119,10 @@ namespace incidere.debut.Services
             return result;
         }
 
-        private bool CreateOrEditUser(LocalUser localUser, OperationType operation, string id = null)
+        private LocalUser CreateOrEditUser(LocalUser item, OperationType operation, string id = null)
         {
-            var result = false;
-            var json = JsonConvert.SerializeObject(localUser);
+            var localUser = new LocalUser();
+            var json = JsonConvert.SerializeObject(item);
             var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
 
             try
@@ -134,28 +134,28 @@ namespace incidere.debut.Services
                 else if (operation == OperationType.Edit)
                     response = m_incidereServiceClient.PutAsync($"{m_incidereServiceApiEndpoint}/{id}", content).Result;
                 else
-                    return result;
+                    return localUser;
 
                 if (response.IsSuccessStatusCode)
                 {
                     var output = response.Content.ReadAsStringAsync().Result;
                     try
                     {
-                        var success = JObject.Parse(output).SelectToken("_status").SelectToken("success");
-                        result = success.Value<bool>();
+                        var result = JObject.Parse(output).SelectToken("_result");
+                        localUser = result.ToObject<LocalUser>();
                     }
                     catch (Exception)
                     {
-                        return result;
+                        return localUser;
                     }
                 }
             }
             catch (Exception)
             {
-                return result;
+                return localUser;
             }
 
-            return result;
+            return localUser;
         }
     }
 }
