@@ -223,6 +223,64 @@ namespace incidere.debut.Api
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
+        [HttpGet]
+        [Route("{key}/{value}")]
+        public async Task<HttpResponseMessage> GetOneByKeyValueAsync(string key, string value)
+        {
+            var resultSuccess = true;
+            var resultStatus = "OK";
+
+            var query = $"orderBy=\"{key}\"&equalTo=\"{value}\"";
+            var response = await m_firebaseClient.GetAsync($"{m_entityName}.json?auth={m_firebaseDatabaseSecret}&{query}");
+            if (!response.IsSuccessStatusCode)
+            {
+                resultSuccess = false;
+                resultStatus = $"Firebase: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}";
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { success = resultSuccess, status = resultStatus, key = key, value = value });
+            }
+
+            var output = await response.Content.ReadAsStringAsync();
+            var jo = JObject.Parse(output);
+            if (jo == null || jo.First == null)
+            {
+                resultSuccess = false;
+                resultStatus = $"Cannot find {m_entityName} with key: {key} and value: {value}";
+                return Request.CreateResponse(HttpStatusCode.NotFound, new { success = resultSuccess, status = resultStatus, key = key, value = value });
+            }
+
+            var id = jo.First.First.Path;
+            var json = JObject.Parse(output).SelectToken($"{id}");
+            if (json == null)
+            {
+                resultSuccess = false;
+                resultStatus = $"Cannot find {m_entityName} with key: {key} and value: {value}";
+                return Request.CreateResponse(HttpStatusCode.NotFound, new { success = resultSuccess, status = resultStatus, key = key, value = value });
+            }
+
+            var item = json.ToObject<Setting>();
+            item.FirebaseKey = id;
+
+            var status = new { success = resultSuccess, status = resultStatus, id = id };
+            var links = new List<object>();
+            var selfLink = new
+            {
+                method = "GET",
+                rel = "self",
+                href = $"{m_baseUrl}/api/{m_entityRoute}/{id}",
+                desc = "Issue a GET request to get the item"
+            };
+            links.Add(selfLink);
+
+            var result = new
+            {
+                _result = item,
+                _status = status,
+                _links = links
+            };
+
+            return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
         [HttpPost]
         [Route("")]
         public async Task<HttpResponseMessage> PostDefault([FromBody]Setting item)
