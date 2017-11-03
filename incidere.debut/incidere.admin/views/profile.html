@@ -9,38 +9,38 @@
                 <div class="card-header"><span class="h6 card-title">Bio</span> <i class="fa fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i></div>
                 <div class="card-body">
                     <form class="form-horizontal" data-bind="with: entity">
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Username</label>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">Username</label>
                             <div class="col-md-6">
-                                <p class="form-control-static"><span data-bind="text: Username"></span></p>
+                                <input type="text" readonly class="form-control-plaintext" data-bind="value: Username" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">FirstName</label>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">FirstName</label>
                             <div class="col-md-6">
-                                <p class="form-control-static"><span data-bind="text: FirstName"></span></p>
+                                <input type="text" readonly class="form-control-plaintext" data-bind="value: FirstName" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">LastName</label>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">LastName</label>
                             <div class="col-md-6">
-                                <p class="form-control-static"><span data-bind="text: LastName"></span></p>
+                                <input type="text" readonly class="form-control-plaintext" data-bind="value: LastName" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">DateOfBirth</label>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">DateOfBirth</label>
                             <div class="col-md-6">
-                                <p class="form-control-static"><span data-bind="text: DateOfBirth"></span></p>
+                                <input type="text" readonly class="form-control-plaintext" data-bind="value: DateOfBirth" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Location</label>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">Location</label>
                             <div class="col-md-6">
-                                <p class="form-control-static"><span data-bind="text: Location"></span></p>
+                                <input type="text" readonly class="form-control-plaintext" data-bind="value: Location" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-3 col-md-6">
+                        <div class="form-group row">
+                            <div class="col-md-offset-4 col-md-6">
                                 <button class="btn btn-secondary" data-bind="click: $root.toggleShowEditForm">Update</button>
                                 <button class="btn btn-outline-secondary" data-bind="click: $root.backToEntityList">Back</button>
                             </div>
@@ -56,38 +56,38 @@
                 <div class="card-header"><span class="h6 card-title">Bio</span> <i class="fa fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i></div>
                 <div class="card-body">
                     <form class="form-horizontal" data-bind="with: entity" id="profile-bio-form">
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Username</label>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">Username</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" placeholder="Username" data-bind="value: Username" disabled />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">FirstName</label>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">FirstName</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" placeholder="FirstName" data-bind="value: FirstName" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">LastName</label>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">LastName</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" placeholder="LastName" data-bind="value: LastName" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">DateOfBirth</label>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">DateOfBirth</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" placeholder="DateOfBirth" data-bind="value: DateOfBirth" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Location</label>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">Location</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" placeholder="FirstName" data-bind="value: Location" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-3 col-md-6">
+                        <div class="form-group row">
+                            <div class="col-md-offset-4 col-md-6">
                                 <button class="btn btn-primary" data-bind="click: $root.editEntity">Update</button>
                                 <button class="btn btn-secondary" data-bind="click: $root.toggleShowEditForm">Cancel</button>
                             </div>
@@ -104,26 +104,26 @@
                 <div class="card-header"><span class="h6 card-title">Password</span> <i class="fa fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i></div>
                 <div class="card-body">
                     <form class="form-horizontal" id="profile-password-form">
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Old Password</label>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">Old Password</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" placeholder="Old Password" name="OldPassword" id="OldPassword" data-bind="value: userOldPassword" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">New Password</label>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">New Password</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" placeholder="New Password" name="NewPassword" id="NewPassword" data-bind="value: userNewPassword" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Confirm Password</label>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">Confirm Password</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" placeholder="Confirm Password" name="ConfirmPassword" id="ConfirmPassword" data-bind="value: userConfirmPassword" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-3 col-md-6">
+                        <div class="form-group row">
+                            <div class="col-md-offset-4 col-md-6">
                                 <button class="btn btn-primary" data-bind="click: editPassword">Update</button>
                                 <button class="btn btn-outline-secondary" data-bind="click: backToEntityList">Back</button>
                             </div>
