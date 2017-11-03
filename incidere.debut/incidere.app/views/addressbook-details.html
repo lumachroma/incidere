@@ -8,99 +8,99 @@
     <!--ko ifnot: showEditForm-->
     <form class="form-horizontal" data-bind="with: entity">
         <div class="form-group row">
-            <label class="col-md-2 control-label">ReferenceNo</label>
+            <label class="col-md-2 col-form-label">ReferenceNo</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: ReferenceNo"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: ReferenceNo" disabled />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">CompanyName</label>
+            <label class="col-md-2 col-form-label">CompanyName</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: CompanyName"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: CompanyName" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">ContactPerson</label>
+            <label class="col-md-2 col-form-label">ContactPerson</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: ContactPerson"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: ContactPerson" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Groups</label>
+            <label class="col-md-2 col-form-label">Groups</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: Groups"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: Groups" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Address1</label>
+            <label class="col-md-2 col-form-label">Address1</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: Address().Address1"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: Address().Address1" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Address2</label>
+            <label class="col-md-2 col-form-label">Address2</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: Address().Address2"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: Address().Address2" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Address3</label>
+            <label class="col-md-2 col-form-label">Address3</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: Address().Address3"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: Address().Address3" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Address4</label>
+            <label class="col-md-2 col-form-label">Address4</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: Address().Address4"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: Address().Address4" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">City</label>
+            <label class="col-md-2 col-form-label">City</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: Address().City"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: Address().City" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">State</label>
+            <label class="col-md-2 col-form-label">State</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: Address().State"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: Address().State" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Country</label>
+            <label class="col-md-2 col-form-label">Country</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: Address().Country"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: Address().Country" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Postcode</label>
+            <label class="col-md-2 col-form-label">Postcode</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: Address().Postcode"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: Address().Postcode" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Long</label>
+            <label class="col-md-2 col-form-label">Long</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: Address().GeoLocation().Long"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: Address().GeoLocation().Long" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Lat</label>
+            <label class="col-md-2 col-form-label">Lat</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: Address().GeoLocation().Lat"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: Address().GeoLocation().Lat" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">ProfilePictureUrl</label>
+            <label class="col-md-2 col-form-label">ProfilePictureUrl</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: ProfilePictureUrl"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: ProfilePictureUrl" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">UserId</label>
+            <label class="col-md-2 col-form-label">UserId</label>
             <div class="col-md-6">
-                <p class="form-control-static"><span data-bind="text: UserId"></span></p>
+                <input type="text" readonly class="form-control-plaintext" data-bind="value: UserId" />
             </div>
         </div>
         <div class="form-group row">
@@ -115,25 +115,25 @@
     <!--ko if: showEditForm-->
     <form class="form-horizontal" data-bind="with: entity">
         <div class="form-group row">
-            <label class="col-md-2 control-label">ReferenceNo</label>
+            <label class="col-md-2 col-form-label">ReferenceNo</label>
             <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="ReferenceNo" data-bind="value: ReferenceNo" disabled />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">CompanyName</label>
+            <label class="col-md-2 col-form-label">CompanyName</label>
             <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="CompanyName" data-bind="value: CompanyName" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">ContactPerson</label>
+            <label class="col-md-2 col-form-label">ContactPerson</label>
             <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="ContactPerson" data-bind="value: ContactPerson" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Groups</label>
+            <label class="col-md-2 col-form-label">Groups</label>
             <div class="col-md-6">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Groups" id="GroupsInput" />
@@ -150,73 +150,73 @@
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Address1</label>
+            <label class="col-md-2 col-form-label">Address1</label>
             <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="Address1" data-bind="value: Address().Address1" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Address2</label>
+            <label class="col-md-2 col-form-label">Address2</label>
             <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="Address2" data-bind="value: Address().Address2" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Address3</label>
+            <label class="col-md-2 col-form-label">Address3</label>
             <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="Address3" data-bind="value: Address().Address3" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Address4</label>
+            <label class="col-md-2 col-form-label">Address4</label>
             <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="Address4" data-bind="value: Address().Address4" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">City</label>
+            <label class="col-md-2 col-form-label">City</label>
             <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="City" data-bind="value: Address().City" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">State</label>
+            <label class="col-md-2 col-form-label">State</label>
             <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="State" data-bind="value: Address().State" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Country</label>
+            <label class="col-md-2 col-form-label">Country</label>
             <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="Country" data-bind="value: Address().Country" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Postcode</label>
+            <label class="col-md-2 col-form-label">Postcode</label>
             <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="Postcode" data-bind="value: Address().Postcode" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Long</label>
+            <label class="col-md-2 col-form-label">Long</label>
             <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="Long" data-bind="value: Address().GeoLocation().Long" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">Lat</label>
+            <label class="col-md-2 col-form-label">Lat</label>
             <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="Lat" data-bind="value: Address().GeoLocation().Lat" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">ProfilePictureUrl</label>
+            <label class="col-md-2 col-form-label">ProfilePictureUrl</label>
             <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="ProfilePictureUrl" data-bind="value: ProfilePictureUrl" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">UserId</label>
+            <label class="col-md-2 col-form-label">UserId</label>
             <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="UserId" data-bind="value: UserId" />
             </div>
