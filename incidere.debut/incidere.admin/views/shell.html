@@ -1,42 +1,34 @@
-﻿<!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-top">
+﻿<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Incidere Admin</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <a class="navbar-brand" href="#">Incidere Admin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav">
                 <!--ko foreach: router.navigationModel-->
-                <li data-bind="css: { active: isActive }">
-                    <a data-bind="attr: { href: hash }, text: title"></a>
+                <li class="nav-item" data-bind="css: { active: isActive }">
+                    <a class="nav-link" data-bind="attr: { href: hash }, text: title"></a>
                 </li>
                 <!--/ko-->
-                <li class="dropdown">
-                    <!--<a href="/Home/Logout">Logout</a>-->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-secret"></i> <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a>Sign in as<br /><strong><span data-bind="text: username">username</span></strong></a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#profile">Profile</a></li>
-                        <li><a href="#setting">Setting</a></li>
-                        <!--<li role="separator" class="divider"></li>
-                        <li><a href="#">Help</a></li>
-                        <li><a href="#">About</a></li>-->
-                        <li role="separator" class="divider"></li>
-                        <li><a href="/Home/Logout">Logout</a></li>
-
-                    </ul>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user-secret"></i> <span class="caret"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item">Sign in as<br /><strong><span data-bind="text: username">username</span></strong></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#profile">Profile</a>
+                        <a class="dropdown-item" href="#setting">Setting</a>
+                        <!--<div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Help</a>
+                    <a class="dropdown-item" href="#">About</a>-->
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/Home/Logout">Logout</a>
+                    </div>
                 </li>
             </ul>
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
 </nav>
 

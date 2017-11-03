@@ -5,9 +5,9 @@
     <div class="col-md-6 col-sm-6 col-xs-12">
         <div>
             <!--ko ifnot: showEditForm-->
-            <div class="panel panel-default">
-                <div class="panel-heading">Bio <i class="fa fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i></div>
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-header"><span class="h6 card-title">Bio</span> <i class="fa fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i></div>
+                <div class="card-body">
                     <form class="form-horizontal" data-bind="with: entity">
                         <div class="form-group">
                             <label class="col-md-3 control-label">Username</label>
@@ -41,8 +41,8 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-3 col-md-6">
-                                <button class="btn btn-default" data-bind="click: $root.toggleShowEditForm">Update</button>
-                                <button class="btn btn-default" data-bind="click: $root.backToEntityList">Back</button>
+                                <button class="btn btn-secondary" data-bind="click: $root.toggleShowEditForm">Update</button>
+                                <button class="btn btn-outline-secondary" data-bind="click: $root.backToEntityList">Back</button>
                             </div>
                         </div>
                     </form>
@@ -52,9 +52,9 @@
         </div>
         <div>
             <!--ko if: showEditForm-->
-            <div class="panel panel-default">
-                <div class="panel-heading">Bio <i class="fa fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i></div>
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-header"><span class="h6 card-title">Bio</span> <i class="fa fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i></div>
+                <div class="card-body">
                     <form class="form-horizontal" data-bind="with: entity" id="profile-bio-form">
                         <div class="form-group">
                             <label class="col-md-3 control-label">Username</label>
@@ -89,7 +89,7 @@
                         <div class="form-group">
                             <div class="col-md-offset-3 col-md-6">
                                 <button class="btn btn-primary" data-bind="click: $root.editEntity">Update</button>
-                                <button class="btn btn-default" data-bind="click: $root.toggleShowEditForm">Cancel</button>
+                                <button class="btn btn-secondary" data-bind="click: $root.toggleShowEditForm">Cancel</button>
                             </div>
                         </div>
                     </form>
@@ -100,9 +100,9 @@
     </div>
     <div class="col-md-6 col-sm-6 col-xs-12">
         <div>
-            <div class="panel panel-default">
-                <div class="panel-heading">Password <i class="fa fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i></div>
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-header"><span class="h6 card-title">Password</span> <i class="fa fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i></div>
+                <div class="card-body">
                     <form class="form-horizontal" id="profile-password-form">
                         <div class="form-group">
                             <label class="col-md-3 control-label">Old Password</label>
@@ -125,7 +125,7 @@
                         <div class="form-group">
                             <div class="col-md-offset-3 col-md-6">
                                 <button class="btn btn-primary" data-bind="click: editPassword">Update</button>
-                                <button class="btn btn-default" data-bind="click: backToEntityList">Back</button>
+                                <button class="btn btn-outline-secondary" data-bind="click: backToEntityList">Back</button>
                             </div>
                         </div>
                     </form>

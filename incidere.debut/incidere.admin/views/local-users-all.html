@@ -3,44 +3,51 @@
         <i class="fa fa-user-circle-o"></i> Users
         <i class="fa fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i>
     </h3>
-    <div class="pull-right">
-        <form class="form-inline">
-            <div class="btn-group" role="group" aria-label="Pager">
-                <button class="btn btn-primary" title="Previous page" data-bind="click: pagerPrevPage, disable: !pagerPrev()"><i class="fa fa-arrow-circle-o-left"></i></button>
-                <button class="btn btn-primary" title="First page" data-bind="click: pagerSelfPage, disable: !pagerSelf()"><i class="fa fa-stop-circle-o"></i></button>
-                <button class="btn btn-primary" title="Next page" data-bind="click: pagerNextPage, disable: !pagerNext()"><i class="fa fa-arrow-circle-o-right"></i></button>
+    <div class="float-right">
+        <form>
+            <div class="form-row">
+                <div class="col">
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar Pager">
+                        <div class="btn-group" role="group" aria-label="Pager">
+                            <button class="btn btn-primary" title="Previous page" data-bind="click: pagerPrevPage, disable: !pagerPrev()"><i class="fa fa-arrow-circle-o-left"></i></button>
+                            <button class="btn btn-primary" title="First page" data-bind="click: pagerSelfPage, disable: !pagerSelf()"><i class="fa fa-stop-circle-o"></i></button>
+                            <button class="btn btn-primary" title="Next page" data-bind="click: pagerNextPage, disable: !pagerNext()"><i class="fa fa-arrow-circle-o-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <select class="form-control form-control-sm custom-select" id="page-pager-size" data-bind="options: pagerAvailSize, value: pagerSize"></select>
+                </div>
             </div>
-            <select class="form-control" id="page-pager-size" data-bind="options: pagerAvailSize, value: pagerSize"></select>
         </form>
     </div>
-    <p>
-        <table class="table table-condensed table-striped">
-            <thead>
-                <tr>
-                    <th class="hidden-xs">&nbsp;</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th class="hidden-xs">FirstName</th>
-                    <th class="hidden-xs">LastName</th>
-                    <th class="hidden-xs">Roles</th>
-                    <th><a class="btn btn-link btn-xs" href="#local-user-details/0" title="Add"><i class="fa fa-user-circle-o"></i></a></th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: list">
-                <tr>
-                    <td class="hidden-xs"><span data-bind="text: ($root.pagerSize() * ($root.pagerPage() - 1)) + $index() + 1"></span>.</td>
-                    <td><span data-bind="text: Username">username</span></td>
-                    <td><span data-bind="text: Email">email</span></td>
-                    <td class="hidden-xs"><span data-bind="text: FirstName">firstname</span></td>
-                    <td class="hidden-xs"><span data-bind="text: LastName">lastname</span></td>
-                    <td class="hidden-xs"><span data-bind="text: Roles">roles</span></td>
-                    <td>
-                        <a class="btn btn-link btn-xs" data-bind="attr: { href: '#local-user-details/' + FirebaseKey }" title="Details/Edit/Delete">
-                            <i class="fa fa-clipboard"></i>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </p>
+    <div class="clearfix"><br /><br /></div>
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="d-none d-sm-table-cell">&nbsp;</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col" class="d-none d-sm-table-cell">FirstName</th>
+                <th scope="col" class="d-none d-sm-table-cell">LastName</th>
+                <th scope="col" class="d-none d-sm-table-cell">Roles</th>
+                <th scope="col"><a href="#local-user-details/0" title="Add"><i class="fa fa-user-circle-o"></i></a></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: list">
+            <tr>
+                <th scope="row" class="d-none d-sm-table-cell"><span data-bind="text: ($root.pagerSize() * ($root.pagerPage() - 1)) + $index() + 1"></span>.</th>
+                <td><span data-bind="text: Username">username</span></td>
+                <td><span data-bind="text: Email">email</span></td>
+                <td class="d-none d-sm-table-cell"><span data-bind="text: FirstName">firstname</span></td>
+                <td class="d-none d-sm-table-cell"><span data-bind="text: LastName">lastname</span></td>
+                <td class="d-none d-sm-table-cell"><span data-bind="text: Roles">roles</span></td>
+                <td>
+                    <a data-bind="attr: { href: '#local-user-details/' + FirebaseKey }" title="Details/Edit/Delete">
+                        <i class="fa fa-clipboard"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
