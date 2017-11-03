@@ -9,7 +9,7 @@
     <div class="pull-right">
         <button class="btn btn-primary" data-bind="click: toggleShowEditForm">Edit</button>
         <button class="btn btn-primary" data-bind="click: deleteEntity">Delete</button>
-        <button class="btn btn-default" data-bind="click: backToEntityList">Back</button>
+        <button class="btn btn-outline-secondary" data-bind="click: backToEntityList">Back</button>
     </div>
     <dl class="dl-horizontal" data-bind="with: entity">
         <dt>ReferenceNo</dt>
@@ -83,7 +83,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Groups" id="GroupsInput" />
                     <span class="input-group-btn">
-                        <button class="btn btn-default" data-bind="click: addChildItem(Groups, document.getElementById('GroupsInput').value)">Add</button>
+                        <button class="btn btn-secondary" data-bind="click: addChildItem(Groups, document.getElementById('GroupsInput').value)">Add</button>
                     </span>
                 </div>
                 <ul class="list-inline" data-bind="foreach: Groups">
@@ -170,11 +170,11 @@
             <div class="col-md-offset-3 col-md-6">
                 <!--ko ifnot: $root.id() === "0"-->
                 <button class="btn btn-primary" data-bind="click: $root.editEntity">Edit</button>
-                <button class="btn btn-default" data-bind="click: $root.toggleShowEditForm">Cancel</button>
+                <button class="btn btn-secondary" data-bind="click: $root.toggleShowEditForm">Cancel</button>
                 <!--/ko-->
                 <!--ko if: $root.id() === "0"-->
                 <button class="btn btn-primary" data-bind="click: $root.addEntity">Add</button>
-                <button class="btn btn-default" data-bind="click: $root.backToEntityList">Back</button>
+                <button class="btn btn-outline-secondary" data-bind="click: $root.backToEntityList">Back</button>
                 <!--/ko-->
             </div>
         </div>
