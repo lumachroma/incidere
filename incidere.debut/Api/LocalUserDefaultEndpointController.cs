@@ -34,7 +34,7 @@ namespace incidere.debut.Api
 
         [HttpGet]
         [Route("")]
-        public async Task<HttpResponseMessage> GetAction([FromUri(Name = "q")]string q = null,
+        public async Task<HttpResponseMessage> GetAsync([FromUri(Name = "q")]string q = null,
             [FromUri(Name = "next")]string next = null,
             [FromUri(Name = "prev")]string prev = null,
             [FromUri(Name = "size")]int size = 10)
@@ -176,7 +176,7 @@ namespace incidere.debut.Api
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<HttpResponseMessage> GetOneByIdAsync(string id)
+        public async Task<HttpResponseMessage> GetOneAsync(string id)
         {
             var resultSuccess = true;
             var resultStatus = "OK";
