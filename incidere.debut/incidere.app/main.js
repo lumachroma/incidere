@@ -5,7 +5,7 @@
         'plugins': '../Scripts/durandal/plugins',
         'transitions': '../Scripts/durandal/transitions',
         'knockout': '../Scripts/knockout-3.4.2',
-        'bootstrap': '../Scripts/bootstrap',
+        'bootstrap': '../Scripts/bootstrap.bundle',
         'jquery': '../Scripts/jquery-3.1.1',
         'moment': '../Scripts/moment',
         'schemas': 'entitydefinition/schemas'

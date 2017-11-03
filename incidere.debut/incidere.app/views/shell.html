@@ -1,27 +1,23 @@
-﻿<!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-top">
+﻿<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand" href="#">Incidere App</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav">
                 <!--ko foreach: router.navigationModel-->
-                <li data-bind="css: { active: isActive }">
-                    <a data-bind="attr: { href: hash }, text: title"></a>
+                <li class="nav-item" data-bind="css: { active: isActive }">
+                    <a class="nav-link" data-bind="attr: { href: hash }, text: title"></a>
                 </li>
                 <!--/ko-->
-                <li>
-                    <a href="/Home/Logout">Logout</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Home/Logout">Logout</a>
                 </li>
             </ul>
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
 </nav>
 
