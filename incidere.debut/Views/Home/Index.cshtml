@@ -2,22 +2,80 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-3">@System.Configuration.ConfigurationManager.AppSettings["ApplicationName"]</h1>
-        <p class="lead">@System.Configuration.ConfigurationManager.AppSettings["ApplicationName"] is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+<div class="hero-image mb-5">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1 class="display-3 text-white">@System.Configuration.ConfigurationManager.AppSettings["ApplicationName"]</h1>
+            <p class="lead text-white">@System.Configuration.ConfigurationManager.AppSettings["ApplicationName"] is a free web framework for building great Web sites and Web applications using C#, HTML, CSS and JavaScript.</p>
+
+        </div>
+        <p class="lead">
+            <a class="btn btn-light btn-lg" href="#" role="button">Learn more</a>
+        </p>
     </div>
 </div>
 
-<div class="container">
-    <div class="text-center h6">
-        <p>ASP.NET <small class="text-muted">.NET Framework 4.6.1</small></p>
-        <p>@System.Configuration.ConfigurationManager.AppSettings["ApplicationName"] <small class="text-muted">version 1.0.0</small></p>
-        <p>jQuery <small class="text-muted">version 3.1.1</small></p>
-        <p>Durandal <small class="text-muted">version 2.2.0</small></p>
-        <p>Knockout <small class="text-muted">version 3.4.2</small></p>
-        <p>RequireJS <small class="text-muted">version 2.3.5</small></p>
-        <p>Bootstrap <small class="text-muted">version 4.0.0-beta</small></p>        
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-md mb-3">
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-light mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title text-center text-secondary"><i class="fa fa-archive fa-2x"></i></h4>
+                            <p class="card-text">Some quick example of pretty awesome feature and benefit number one.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card bg-light mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title text-center text-secondary"><i class="fa fa-paper-plane-o fa-2x"></i></h4>
+                            <p class="card-text">Some quick example of pretty awesome feature and benefit number two.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col">
+                    <div class="card bg-light mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title text-center text-secondary"><i class="fa fa-object-group fa-2x"></i></h4>
+                            <p class="card-text">Some quick example of pretty awesome feature and benefit number three.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card bg-light mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title text-center text-secondary"><i class="fa fa-comments-o fa-2x"></i></h4>
+                            <p class="card-text">Some quick example of pretty awesome feature and benefit number four.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md mb-3">
+            <p class="h1 font-weight-light text-success">Features created to help your projects and teams</p>
+            <p class="h4"><small><i class="fa fa-check text-success"></i> Pretty awesome feature and benefit one.</small></p>
+            <p class="h4"><small><i class="fa fa-check text-success"></i> Pretty awesome feature and benefit two.</small></p>
+            <p class="h4"><small><i class="fa fa-check text-success"></i> Pretty awesome feature and benefit three.</small></p>
+            <p class="h4"><small><i class="fa fa-check text-success"></i> Pretty awesome feature and benefit four.</small></p>
+            <p class="h4"><small><i class="fa fa-check text-success"></i> Pretty awesome feature and benefit five.</small></p>
+            <p class="h4"><small><i class="fa fa-check text-success"></i> Pretty awesome feature and benefit six.</small></p>
+            <p class="h4"><small><i class="fa fa-check text-success"></i> Pretty awesome feature and benefit seven.</small></p>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="h6 text-center">
+        <p class="lead"><i class="fa fa-code"></i> with <i class="fa fa-heart-o"></i> by nazrulhisham_</p>
+        <p>ASP.NET <small class="text-muted">.NET Framework <code>4.6.1</code></small></p>
+        <p>@System.Configuration.ConfigurationManager.AppSettings["ApplicationName"] <small class="text-muted">version <code>1.0.0</code></small></p>
+        <p>jQuery <small class="text-muted">version <code>3.1.1</code></small></p>
+        <p>Durandal <small class="text-muted">version <code>2.2.0</code></small></p>
+        <p>Knockout <small class="text-muted">version <code>3.4.2</code></small></p>
+        <p>RequireJS <small class="text-muted">version <code>2.3.5</code></small></p>
+        <p>Bootstrap <small class="text-muted">version <code>4.0.0-beta</code></small></p>
     </div>
 </div>
