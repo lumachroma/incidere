@@ -1,4 +1,5 @@
-﻿define(['knockout', 'schemas', 'durandal/system', 'durandal/app', 'plugins/router', 'services/config', 'services/datacontext'],
+﻿define(['knockout', 'schemas', 'durandal/system', 'durandal/app',
+    'plugins/router', 'services/config', 'services/datacontext'],
     function (ko, schemas, system, app, router, config, context) {
         var isBusy = ko.observable(false),
             id = ko.observable(),
@@ -7,21 +8,21 @@
             activate = function (entityId) {
                 id(entityId);
                 if (!entityId || entityId === "0") {
-                    entity(new schemas.AddressBook(system.guid()));
+                    entity(schemas.AddressBook(system.guid()));
                     showEditForm(true);
                 } else {
                     isBusy(true);
-                    context.get(`/api/address-books/${id()}`, true, {})
+                    return context.get(`/api/address-books/${id()}`, true, {})
                         .done(function (result) {
                             //console.log(result);
-                            entity(new schemas.AddressBook(result._result));
+                            entity(schemas.AddressBook(result._result));
                             console.log(ko.toJSON(entity));
                             isBusy(false);
                         }).fail(function (e) {
-                            console.log(e.status);
-                            console.log(e.statusText);
+                            console.log(`${e.status} ${e.statusText} ${e.responseJSON.status}`);
                             isBusy(false);
-                            app.showMessage(`${e.status}: ${e.statusText}. Invalid Entity Id: ${id()}`, config.application_name, ["OK"])
+                            app.showMessage(`${e.status}: ${e.statusText}. Invalid Entity Id: ${id()}`,
+                                config.application_name, ["OK"])
                                 .done(function (result) {
                                     if (result == "OK") {
                                         router.navigate("addressbooks-all");
@@ -81,12 +82,8 @@
             backToEntityList = function () {
                 router.navigate("addressbooks-all");
             },
-            attached = function () {
-
-            },
-            compositionComplete = function () {
-
-            },
+            attached = function () { },
+            compositionComplete = function () { },
             deactivate = function () {
                 id(null);
                 showEditForm(false);
