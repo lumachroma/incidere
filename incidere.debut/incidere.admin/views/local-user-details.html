@@ -5,24 +5,12 @@
     </h3>
     <hr />
 
-    <!--ko ifnot: showEditForm-->
-    <form class="form-horizontal" data-bind="with: entity">
-        <div class="form-group row">
-            <label class="col-md-2 col-form-label">ReferenceNo</label>
-            <div class="col-md-6">
-                <input type="text" readonly class="form-control-plaintext" data-bind="value: ReferenceNo" />
-            </div>
-        </div>
+    <form class="form-horizontal" data-bind="with: entity" id="local-user-details-form">
+        <!--ko ifnot: $root.showEditForm-->
         <div class="form-group row">
             <label class="col-md-2 col-form-label">Username</label>
             <div class="col-md-6">
                 <input type="text" readonly class="form-control-plaintext" data-bind="value: Username" />
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 col-form-label">Password</label>
-            <div class="col-md-6">
-                <input type="text" readonly class="form-control-plaintext" data-bind="value: Password" />
             </div>
         </div>
         <div class="form-group row">
@@ -68,56 +56,44 @@
                 <button class="btn btn-outline-secondary" data-bind="click: $root.backToEntityList">Back</button>
             </div>
         </div>
-    </form>
-    <!--/ko-->
-    <!--ko if: showEditForm-->
-    <form class="form-horizontal" data-bind="with: entity">
-        <div class="form-group row">
-            <label class="col-md-2 col-form-label">ReferenceNo</label>
-            <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="ReferenceNo" data-bind="value: ReferenceNo" disabled />
-            </div>
-        </div>
+        <!--/ko-->
+        <!--ko if: $root.showEditForm-->
         <div class="form-group row">
             <label class="col-md-2 col-form-label">Username</label>
             <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Username" data-bind="value: Username" />
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 col-form-label">Password</label>
-            <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Password" data-bind="value: Password" />
+                <input type="text" class="form-control" placeholder="Username" name="Username" data-bind="value: Username, css: { 'is-invalid': $root.usernameExist() }" />
+                <!--ko if: $root.usernameExist()--><div class="error">Username is not available</div><!--/ko-->
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-2 col-form-label">Email</label>
             <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Email" data-bind="value: Email" />
+                <input type="text" class="form-control" placeholder="Email" name="Email" data-bind="value: Email, css: { 'is-invalid': $root.emailExist() }" />
+                <!--ko if: $root.emailExist()--><div class="error">Email is not available</div><!--/ko-->
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-2 col-form-label">FirstName</label>
             <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="FirstName" data-bind="value: FirstName" />
+                <input type="text" class="form-control" placeholder="FirstName" name="FirstName" data-bind="value: FirstName" />
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-2 col-form-label">LastName</label>
             <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="LastName" data-bind="value: LastName" />
+                <input type="text" class="form-control" placeholder="LastName" name="LastName" data-bind="value: LastName" />
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-2 col-form-label">DateOfBirth</label>
             <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="DateOfBirth" data-bind="value: DateOfBirth" />
+                <input type="text" class="form-control" placeholder="DateOfBirth" name="DateOfBirth" data-bind="value: DateOfBirth" />
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-2 col-form-label">Location</label>
             <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Location" data-bind="value: Location" />
+                <input type="text" class="form-control" placeholder="Location" name="Location" data-bind="value: Location" />
             </div>
         </div>
         <div class="form-group row">
@@ -140,17 +116,17 @@
         <div class="form-group row">
             <div class="col-md-offset-2 col-md-6">
                 <!--ko ifnot: $root.id() === "0"-->
-                <button class="btn btn-primary" data-bind="click: $root.editEntity">Edit</button>
+                <button class="btn btn-primary" data-bind="click: $root.editEntity, disable: $root.usernameExist() || $root.emailExist()">Edit</button>
                 <button class="btn btn-secondary" data-bind="click: $root.toggleShowEditForm">Cancel</button>
                 <!--/ko-->
                 <!--ko if: $root.id() === "0"-->
-                <button class="btn btn-primary" data-bind="click: $root.addEntity">Add</button>
+                <button class="btn btn-primary" data-bind="click: $root.addEntity, disable: $root.usernameExist() || $root.emailExist()">Add</button>
                 <button class="btn btn-outline-secondary" data-bind="click: $root.backToEntityList">Back</button>
                 <!--/ko-->
             </div>
         </div>
+        <!--/ko-->
     </form>
-    <!--/ko-->
 
     <hr />
 </div>
